@@ -7,8 +7,12 @@ client = Client()
 def handle_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
     if content_type == 'text':
-        response = client.chat.
-        bot.sendMessage(chat_id, 'Anda mengirim: {}'.format(msg['text']))
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": "Hello"}]
+        )
+        
+        bot.sendMessage(chat_id, response.choices[0].message.content)
 
 TOKEN = '6653553439:AAH6C_O5fWysqxZchHDE-sRHsxBtTy2dGTs'
 bot = telepot.Bot(TOKEN)
