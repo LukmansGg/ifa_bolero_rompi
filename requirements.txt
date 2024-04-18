@@ -3,3 +3,4 @@ g4f
 aiohttp_socks
 browser_cookie3
 curl_cffi
+sys
