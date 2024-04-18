@@ -1,9 +1,13 @@
 import telepot
 from telepot.loop import MessageLoop
+from g4f.client import Client
 
+
+client = Client()
 def handle_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
     if content_type == 'text':
+        response = client.chat.
         bot.sendMessage(chat_id, 'Anda mengirim: {}'.format(msg['text']))
 
 TOKEN = '6653553439:AAH6C_O5fWysqxZchHDE-sRHsxBtTy2dGTs'
