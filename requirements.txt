@@ -1,3 +1,5 @@
 telepot
 g4f
-aiohttp
+aiohttp_socks
+browser_cookie3
+curl_cffi
