@@ -23,4 +23,4 @@ def handle_message(msg):
     bot.sendMessage(chat_id, response, reply_markup=keyboard)
 
 
-MessageLoop(bot, {'chat': handle_message, 'callback_query': handle_callback}).run_as_thread()
+MessageLoop(bot, {'chat': handle_message}).run_as_thread()
