@@ -1,5 +1,5 @@
 flask
-request
+requests
 telepot
 g4f
 aiohttp_socks
