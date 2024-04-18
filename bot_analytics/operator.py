@@ -4,7 +4,7 @@ from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 from programs.gpt import gpt3
 import telepot
 
-TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
+TOKEN = '6569008899:AAF3DCqPjVg2Sgrr6lH8UDGawuZkB8psF1M'
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
 
