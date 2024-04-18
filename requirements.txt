@@ -1,4 +1,3 @@
-python
 telepot
 g4f
 aiohttp_socks
