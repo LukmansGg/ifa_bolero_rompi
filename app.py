@@ -15,7 +15,7 @@ def home():
     return 'Hello, welcome to my Flask app!'
 
 if __name__ == '__main__':
-    TOKEN = '6745240094:AAEusYAJV5cVLT4vyDef2UnMjPRdVDSzCd8'
+    TOKEN = '6745240094:AAE0s6qclbYVCpSuCCCZHl5Y3wswqTT72fc'
     bot = telepot.Bot(TOKEN)
     MessageLoop(bot, {'chat': handle_message}).run_as_thread()
     app.run(host='0.0.0.0', port=8000)
