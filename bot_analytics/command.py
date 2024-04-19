@@ -2,8 +2,8 @@ import importlib
 
 TELEGRAM_COMMANDS = {
     "/start": "commands.start",
-    "/tanya": "commands.tanya",
-    "/cari": "commands.cari"
+    "/tanya": "commands.tanya"
+    #"/cari": "commands.cari"
 }
 
 def addCommand():
