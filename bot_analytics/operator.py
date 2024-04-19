@@ -23,5 +23,5 @@ def handle_message(msg):
                 module.handle_command()
             else:
                 answer = gpt3(message)
-                answeringMessage(chat_id, message_id, message, answer)
+                answeringMessage(chat_id, message, answer)
  
