@@ -29,7 +29,10 @@ def command_handler(sent_message, message):
 
         chat_db.insert({'chat_id': chat_id, 'message_id': message_id, 'search_id': search_id, 'link_page': 0})
         try:
-            bot.editMessageText((chat_id, message_id), )
+            bot.editMessageText((chat_id, message_id), f"[1/10]\nHasil Pencarian: [{title}]\n\n{description}\nsumber: {url}\n\npowered by [googlesearch]",
+            reply_markup = InlineKeyboardMarkup(inline_keyboard=[
+                [InlineKeyboardButton(text="next",callback_data='next_search')]
+            ]))
         else:
             pass
     else:
