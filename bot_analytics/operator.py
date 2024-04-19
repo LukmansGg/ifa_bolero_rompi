@@ -49,7 +49,7 @@ def handle_callback(msg):
     callback_id = msg['id']
 
     for callback in TELEGRAM_BOT_CALLBACKS.keys():
-        if callback in message:
+        if callback == query_data:
             callback_found = True
             module_name = TELEGRAM_BOT_CALLBACKS[command]
             module = importlib.import_module(module_name, ".")
