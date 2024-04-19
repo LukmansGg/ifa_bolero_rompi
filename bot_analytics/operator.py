@@ -49,7 +49,8 @@ def handle_callback(msg):
             module_name = TELEGRAM_BOT_CALLBACKS[command]
             module = importlib.import_module(module_name, ".")
             #display text
-            module.command_handler(msg)
+            bot.answerCallbackQuery(callback_id, "Menjalankan Perintah...")
+            module.callback_handler(msg)
             break  # keluar dari loop setelah menemukan perintah
 
     if not command_found:
