@@ -4,6 +4,7 @@ import importlib
 from tinydb import TinyDB
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 
+from config import TOKEN
 from programs.gpt import gpt3
 import telepot
 from programs.message import answeringMessage
