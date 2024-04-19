@@ -19,8 +19,11 @@ def handle_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
     if content_type == 'text':
         message = msg['text']
+        command_found = False
+        
         for command in TELEGRAM_COMMANDS.keys():
             if command in message:
+                command_found = True
                 module_name = TELEGRAM_COMMANDS[command]
                 module = importlib.import_module(module_name, ".")
                 #display text
@@ -28,7 +31,11 @@ def handle_message(msg):
                 
                 # runing command class
                 module.command_handler(sent_message, msg)
-            else:
-                answer = gpt3(message)
-                answeringMessage(chat_id, message, answer)
+                break  # keluar dari loop setelah menemukan perintah
+                
+        if not command_found:
+            # hanya menjawab jika tidak ada perintah yang cocok
+            answer = gpt3(message)
+            answeringMessage(chat_id, message, answer)
+
  
