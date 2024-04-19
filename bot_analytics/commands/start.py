@@ -2,7 +2,12 @@ import telepot
 from telepot.namedtuple import InlineKeyboardMarkup, ReplyKeyboardMarkup, InlineKeyboardButton, KeyboardButton
 from telepot.exception import TelegramError
 
-def command_handler(bot,sent_message, message):
+
+TOKEN = ''
+bot = telepot.Bot(TOKEN)
+db = TinyDB('chat_data.json')
+
+def command_handler(sent_message, message):
     message_id = sent_message.get('message_id')
     chat_id = sent_message.get('chat_id')
     
