@@ -11,7 +11,7 @@ from bot_analytics.command import TELEGRAM_COMMANDS
 
 #sys.path.append('commands')
 
-TOKEN = '6745240094:AAEusYAJV5cVLT4vyDef2UnMjPRdVDSzCd8'
+TOKEN = '6745240094:AAE0s6qclbYVCpSuCCCZHl5Y3wswqTT72fc'
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
 
