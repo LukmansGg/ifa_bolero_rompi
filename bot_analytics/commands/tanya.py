@@ -9,7 +9,8 @@ TOKEN = '6569008899:AAH3cQ0mgMZsms37C8AEBKofFyrDdhNICQg'
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
 
-def command_handler(sent_message, message):
+def command_handler(sent_message, message_o):
+    message = message_o.get('text')
     answer = gpt3(message)
 
     message_id = sent_message.get('message_id')
