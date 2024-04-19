@@ -2,10 +2,10 @@ import telepot
 from tinydb import TinyDB
 from telepot.namedtuple import InlineKeyboardMarkup, ReplyKeyboardMarkup, InlineKeyboardButton, KeyboardButton
 from telepot.exception import TelegramError
+from bot_analytics.operator import TOKEN
 
 from programs.gpt import gpt3
 
-TOKEN = '6745240094:AAE0s6qclbYVCpSuCCCZHl5Y3wswqTT72fc'
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
 
