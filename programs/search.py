@@ -21,13 +21,14 @@ def search(query):
             link_raw = string_result.split("url=")[1]
             link_result = link_raw.split(", title")[0]
 
-            # Save search data to the database along with the unique ID
-            db.insert({'search_id': search_id, 'title': title_result, 'description': description_result, 'link': link_result})
+            my_results_list.append(link_result)
+
 
             # Limit to sending only the first 5 search results
             if i >= 10:
                 break
 
+        db.insert({'search_id': search_id, 'result': my_results_list})
         return search_id
     except requests.exceptions.HTTPError as err:
         if err.response.status_code == 429:
