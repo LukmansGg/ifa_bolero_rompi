@@ -2,7 +2,7 @@ flask
 requests
 telepot
 g4f
-googlesearch
+googlesearch-python
 time
 uuid
 aiohttp_socks
