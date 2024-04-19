@@ -1,3 +1,3 @@
 TELEGRAM_BOT_CALLBACKS = {
-    "regenerate": "callbacks.regenerate"
+    "regenerate": "bot_analytics.callbacks.regenerate"
 }
