@@ -2,7 +2,7 @@ import telepot
 from tinydb import TinyDB
 from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton
 from bot_analytics.command import TELEGRAM_COMMANDS
-from bot_analytics.operator import TOKEN
+from config import TOKEN
 
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
