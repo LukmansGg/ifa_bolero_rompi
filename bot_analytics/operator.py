@@ -8,7 +8,7 @@ from config import TOKEN
 from programs.gpt import gpt3
 import telepot
 from programs.message import answeringMessage
-from bot_analytics.command import TELEGRAM_COMMANDS
+from bot_analytics.command import TELEGRAM_BOTS_COMMANDS
 
 #sys.path.append('commands')
 
@@ -21,7 +21,7 @@ def handle_message(msg):
         message = msg['text']
         command_found = False
         
-        for command in TELEGRAM_COMMANDS.keys():
+        for command in TELEGRAM_BOTS_COMMANDS.keys():
             if command in message:
                 command_found = True
                 module_name = TELEGRAM_COMMANDS[command]
