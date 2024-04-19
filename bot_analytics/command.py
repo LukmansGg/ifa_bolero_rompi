@@ -6,5 +6,5 @@ TELEGRAM_COMMANDS = {
     "cari": "commands/cari.py"
 }
 
-def run_command:
+def addCommand():
     return "Wip"
