@@ -4,7 +4,7 @@ import importlib
 from flask import Flask, request
 import telepot
 from telepot.loop import MessageLoop
-from bot_analytics.operator import handle_message
+from bot_analytics.operator import handle_message, handle_callback
 from config import TOKEN
 
 sys.path.append('programs')
