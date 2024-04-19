@@ -21,14 +21,14 @@ def search(query):
             link_raw = string_result.split("url=")[1]
             link_result = link_raw.split(", title")[0]
 
-            my_results_list.append(link_result)
+            my_results_list.append({'title': title_result, 'description': description_result, 'link': link_result})
 
-
-            # Limit to sending only the first 5 search results
+            # Limit to sending only the first 10 search results
             if i >= 10:
                 break
 
-        db.insert({'search_id': search_id, 'result': my_results_list})
+        # Simpan data ke dalam database dengan struktur yang diinginkan
+        db.insert({'chat_id': chat_id, 'message_id': message_id, 'links': my_results_list})
         return search_id
     except requests.exceptions.HTTPError as err:
         if err.response.status_code == 429:
