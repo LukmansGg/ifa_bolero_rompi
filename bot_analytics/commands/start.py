@@ -1,4 +1,5 @@
 import telepot
+from tinydb import TinyDB
 from telepot.namedtuple import InlineKeyboardMarkup, ReplyKeyboardMarkup, InlineKeyboardButton, KeyboardButton
 from telepot.exception import TelegramError
 
