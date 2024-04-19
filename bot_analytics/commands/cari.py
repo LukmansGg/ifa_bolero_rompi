@@ -16,5 +16,9 @@ def command_handler(sent_message, message):
     query = message['text']
     
     result = search(query)
-    try:
-        bot.editMessageText((chat_id, message_id), )
+    url = Query()
+    get_result = db.get(url.search_id == result)
+    
+    if get_result:
+        try:
+            bot.editMessageText((chat_id, message_id), )
