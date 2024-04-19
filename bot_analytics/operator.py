@@ -20,8 +20,11 @@ def handle_message(msg):
             if command in message:
                 module_name = TELEGRAM_COMMANDS[command]
                 module = importlib.import_module(module_name)
+                #display text
+                display = bot.sendMessage(chat_id, "tunggu...")
+                
                 # runing command class
-                module.handle_command()
+                module.command_handler(bot, display, message)
             else:
                 answer = gpt3(message)
                 answeringMessage(chat_id, message, answer)
