@@ -35,7 +35,7 @@ def handle_message(msg):
         if not command_found:
             # hanya menjawab jika tidak ada perintah yang cocok
             try:
-                bot.deleteMessage((chat_id, msg['message']['message_id']))
+                bot.deleteMessage((chat_id, msg['message_id']))
             except telepot.exception.TelegramError as e:
                 pass
 
