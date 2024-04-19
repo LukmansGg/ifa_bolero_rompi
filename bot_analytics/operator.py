@@ -33,8 +33,9 @@ def handle_message(msg):
                 
         if not command_found:
             # hanya menjawab jika tidak ada perintah yang cocok
+            bot_message = bot.sendMessage(chat_id, "tunggu...")
             answer = gpt3(message)
-            answeringMessage(chat_id, message, answer)
+            answeringMessage(bot_message, chat_id, message, answer)
 
  
 def handle_callback(msg):
