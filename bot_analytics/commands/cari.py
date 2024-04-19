@@ -24,13 +24,13 @@ def command_handler(sent_message, message):
         links = get_result[0]['links']
         
         # Loop through each link and print title, description, and link
-        for link in links:
-            title = link['title']
-            description = link['description']
-            url = link['link']
-            print(f"Judul: {title}")
-            print(f"Deskripsi: {description}")
-            print(f"Tautan: {url}")
+        link = result[0]['link']
+        title = link['title']
+        description = link['description']
+        url = link['link']
+        
+
+        db.insert({'chat_id': chat_id, 'message_id': message_id, 'search_id': search_id, 'link_page': 0})
 
         bot.editMessageText((chat_id, message_id), )
     else:
