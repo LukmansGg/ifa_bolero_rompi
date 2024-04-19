@@ -2,6 +2,9 @@ flask
 requests
 telepot
 g4f
+googlesearch
+time
+uuid
 aiohttp_socks
 browser_cookie3
 curl_cffi
