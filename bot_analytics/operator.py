@@ -27,7 +27,7 @@ def handle_message(msg):
                 sent_message = bot.sendMessage(chat_id, "tunggu...")
                 
                 # runing command class
-                module.command_handler(sent_message, message)
+                module.command_handler(sent_message, msg)
             else:
                 answer = gpt3(message)
                 answeringMessage(chat_id, message, answer)
