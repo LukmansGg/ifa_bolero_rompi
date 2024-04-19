@@ -1,7 +1,7 @@
 from tinydb import TinyDB
 import telepot
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
-from bot_analytics.operator import TOKEN
+from config import TOKEN
 
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
