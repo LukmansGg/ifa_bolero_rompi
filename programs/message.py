@@ -11,7 +11,7 @@ def answeringMessage(bot_message, chat_id, message, response):
     bot_message_id = bot_message['message_id']
     
     regenerate = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Re-generate', callback_data = 'regenerate')]])
-    sent_message = bot.sendMessage(chat_id, response, reply_markup=regenerate)
+    sent_message = bot.editMessageText((bot_chat_id, bot_message_id), response, reply_markup=regenerate)
     message_id = sent_message.get('message_id')
     db.insert({'chat_id': chat_id, 'message_id': message_id, 'question': message, 'answer': response})
 
