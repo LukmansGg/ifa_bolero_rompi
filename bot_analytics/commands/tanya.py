@@ -20,3 +20,5 @@ def command_handler(sent_message, msg):
     try:
          bot.editMessageText((chat_id, message_id), answer, reply_markup=regenerate)
         db.insert({'chat_id': chat_id, 'message_id': message_id, 'question': message, 'answer': response})
+    except telepot.exception.TelegramError as e:
+        pass
