@@ -27,10 +27,10 @@ def handle_message(msg):
                 module_name = TELEGRAM_COMMANDS[command]
                 module = importlib.import_module(module_name, ".")
                 #display text
-                sent_message = bot.sendMessage(chat_id, "tunggu...")
+                bot_message = bot.sendMessage(chat_id, "tunggu...")
                 
                 # runing command class
-                module.command_handler(sent_message, msg)
+                 module.command_handler(bot_message, msg)
                 break  # keluar dari loop setelah menemukan perintah
                 
         if not command_found:
