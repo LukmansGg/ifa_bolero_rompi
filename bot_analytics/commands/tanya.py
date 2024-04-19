@@ -13,7 +13,7 @@ def command_handler(bot_message, user_message):
     content_type, chat_type, chat_id = telepot.glance(user_message)
     sent_message = telepot.message_identifier(bot_message)
     
-    message = user_message.get('text')
+    message = msg['text']
     answer = gpt3(message)
 
     regenerate = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Re-generate', callback_data = 'regenerate')]])
