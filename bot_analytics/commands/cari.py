@@ -20,10 +20,6 @@ def command_handler(sent_message, message):
     get_result = db.get(url.search_id == result)
     
     if get_result:
-        # Jika entri ditemukan, ambil links dari entri pertama
-        links = get_result['links'][0]
-        
-        # Loop through each link and print title, description, and link
         link = get_result['links'][0]
         title = link['title']
         description = link['description']
@@ -31,7 +27,12 @@ def command_handler(sent_message, message):
         
 
         db.insert({'chat_id': chat_id, 'message_id': message_id, 'search_id': search_id, 'link_page': 0})
-
-        bot.editMessageText((chat_id, message_id), )
+        try:
+            bot.editMessageText((chat_id, message_id), )
+        else:
+            pass
     else:
-        print("Tidak ditemukan hasil pencarian untuk chat_id dan message_id yang diberikan")
+        try:
+            bot.editMessageText((chat_id, message_id), "Tidak ditemukan hasil pencarian untuk search_id yang diberikan")
+        else:
+            pass
