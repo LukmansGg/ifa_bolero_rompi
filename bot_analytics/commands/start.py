@@ -11,7 +11,9 @@ def command_handler(sent_message, message):
     chat_id = sent_message['chat']['id']
     message_id = sent_message['message_id']
 
-    bot.editMessageText((chat_id, message_id), "Selamat Datang di @Ifa_bolero_dan_rompi_bot\nDisini kita dapat belajar bersama berbagai Hal tentang Bolero/Rompi😁👍\n", reply_markup=ReplyKeyboardMarkup(
+    bot.editMessageText((chat_id, message_id), "Selamat Datang di @Ifa_bolero_dan_rompi_bot\nDisini kita dapat belajar bersama berbagai Hal tentang Bolero/Rompi😁👍\n")
+
+    bot.sendMessage(chat_id, "Pilih salah satu materi disini👇.", reply_markup=ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(text="Pengertian✍️️")],
             [KeyboardButton(text="Menyiapkan Ukuran📏")],
@@ -21,8 +23,6 @@ def command_handler(sent_message, message):
         ],
         resize_keyboard=True
     ))
-
-    bot.sendMessage(chat_id, "Pilih salah satu materi disini👇.")
     try:
         user_message_id = message.get('message_id')
         bot.deleteMessage((chat_id, user_message_id))
