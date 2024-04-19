@@ -10,7 +10,7 @@ bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
 
 def command_handler(bot_message, user_message):
-    content_type, chat_type, chat_id = telepot.glance(msg)
+    content_type, chat_type, chat_id = telepot.glance(user_message)
     sent_message = telepot.message_identifier(bot_message)
     
     message = user_message.get('text')
