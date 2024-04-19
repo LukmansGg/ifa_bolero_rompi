@@ -9,9 +9,9 @@ import telepot
 from programs.message import answeringMessage
 from bot_analytics.command import TELEGRAM_COMMANDS
 
-sys.path.append('commands')
+#sys.path.append('commands')
 
-TOKEN = '6569008899:AAEJMUCCuusUiMy64z9UaCvzJIhgtLpYjPA'
+TOKEN = '6569008899:AAGf5NIbu2Dp-43kwXEoSo_oEaGt6Obf5HY'
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
 
