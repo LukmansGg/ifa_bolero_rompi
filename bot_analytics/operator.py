@@ -34,6 +34,11 @@ def handle_message(msg):
                 
         if not command_found:
             # hanya menjawab jika tidak ada perintah yang cocok
+            try:
+                bot.deleteMessage((chat_id, msg['message']['message_id']))
+            except telepot.exception.TelegramError as e:
+                pass
+
             bot_message = bot.sendMessage(chat_id, "tunggu...")
             answer = gpt3(message + " arahkan saya untuk mengetik /start untuk memulai bot, /tanya untuk bertanya seputar materi bolero/romou, /cari untuk mencari website/sumber seputar materi")
             answeringMessage(bot_message, chat_id, message, answer)
