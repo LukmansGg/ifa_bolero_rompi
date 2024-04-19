@@ -3,7 +3,7 @@ from tinydb import TinyDB
 from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton
 from telepot.exception import TelegramError
 
-TOKEN = '6745240094:AAEusYAJV5cVLT4vyDef2UnMjPRdVDSzCd8'
+TOKEN = '6745240094:AAE0s6qclbYVCpSuCCCZHl5Y3wswqTT72fc'
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
 
