@@ -1,6 +1,6 @@
 from programs.search import search
 import telepot
-from tinydb import TinyDB
+from tinydb import TinyDB, Query
 from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton
 from bot_analytics.command import TELEGRAM_COMMANDS
 from config import TOKEN
@@ -8,7 +8,8 @@ from config import TOKEN
 from programs.search import search
 
 bot = telepot.Bot(TOKEN)
-db = TinyDB('search_results.json')
+search_db = TinyDB('search_results.json')
+chat_db = TinyDB('chat_data.json')
 
 def command_handler(sent_message, message):
     chat_id = sent_message['chat']['id']
@@ -17,7 +18,7 @@ def command_handler(sent_message, message):
     
     result = search(query)
     url = Query()
-    get_result = db.get(url.search_id == result)
+    get_result = search_db.get(url.search_id == result)
     
     if get_result:
         link = get_result['links'][0]
@@ -26,7 +27,7 @@ def command_handler(sent_message, message):
         url = link['link']
         
 
-        db.insert({'chat_id': chat_id, 'message_id': message_id, 'search_id': search_id, 'link_page': 0})
+        chat_db.insert({'chat_id': chat_id, 'message_id': message_id, 'search_id': search_id, 'link_page': 0})
         try:
             bot.editMessageText((chat_id, message_id), )
         else:
