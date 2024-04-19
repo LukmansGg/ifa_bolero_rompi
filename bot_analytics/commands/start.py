@@ -1,10 +1,9 @@
 import telepot
 from tinydb import TinyDB
-from telepot.namedtuple import InlineKeyboardMarkup, ReplyKeyboardMarkup, InlineKeyboardButton, KeyboardButton
+from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton
 from telepot.exception import TelegramError
 
-
-TOKEN = '6569008899:AAH3cQ0mgMZsms37C8AEBKofFyrDdhNICQg'
+TOKEN = 'your_bot_token_here'
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
 
@@ -23,7 +22,10 @@ def command_handler(sent_message, message):
         resize_keyboard= True
     ))
     bot.sendMessage(chat_id, "Pilih salah satu materi disini👇.")
+    
+    # Hapus pesan yang dikirim oleh pengguna
     try:
-        bot.deleteMessage((update["message"]["chat"]["id"], update["message"]["message_id"]))
+        user_message_id = message.get('message_id')
+        bot.deleteMessage((chat_id, user_message_id))
     except TelegramError as e:
         pass
