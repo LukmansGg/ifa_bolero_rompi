@@ -2,7 +2,7 @@ import telepot
 from tinydb import TinyDB
 from telepot.namedtuple import InlineKeyboardMarkup, ReplyKeyboardMarkup, InlineKeyboardButton, KeyboardButton
 from telepot.exception import TelegramError
-from bot_analytics.operator import TOKEN
+from config import TOKEN
 
 from programs.gpt import gpt3
 
