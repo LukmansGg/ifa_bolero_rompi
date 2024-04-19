@@ -1,7 +1,7 @@
 import os
 import sys
 import importlib
-from tinydb import TinyDB
+from tinydb import TinyDB, Query
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 
 from config import TOKEN
