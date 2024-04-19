@@ -5,7 +5,7 @@ from telepot.exception import TelegramError
 
 from programs.gpt import gpt3
 
-TOKEN = '6569008899:AAFgs9mO41_8F4O5gkg7CpCweXmTgx2TvWE'
+TOKEN = '6569008899:AAGzHuBX5JuyHx1ijAzWzjKPhsq6NOPAL3o'
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
 
