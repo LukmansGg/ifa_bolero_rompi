@@ -9,12 +9,13 @@ TOKEN = '6569008899:AAGkouDkdodOrx9vIBQGQjwvW7H8XIOk5d8'
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
 
-def command_handler(sent_message, message_o):
-    message = message_o.get('text')
+def command_handler(bot_message, user_message):
+    content_type, chat_type, chat_id = telepot.glance(msg)
+    sent_message = telepot.message_identifier(bot_message)
+    
+    message = user_message.get('text')
     answer = gpt3(message)
 
-    message_id = sent_message.get('message_id')
-    chat_id = sent_message.get('chat_id')
     regenerate = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Re-generate', callback_data = 'regenerate')]])
-    bot.editMessageText((chat_id, message_id), answer, reply_markup=regenerate)
+    bot.editMessageText(sent_message, answer, reply_markup=regenerate)
     db.insert({'chat_id': chat_id, 'message_id': message_id, 'question': message, 'answer': response})
