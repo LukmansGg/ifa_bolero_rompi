@@ -7,16 +7,17 @@ TOKEN = '6569008899:AAGkouDkdodOrx9vIBQGQjwvW7H8XIOk5d8'
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
 
-def command_handler(sent_message, message):
-    message_id = sent_message.get('message_id')
-    chat_id = sent_message.get('chat_id')
+def command_handler(bot_message, message):
     
+    sent_message = telepot.message_identifier(bot_message)
+    user_message = telepot.message_identifier(message)
+
     bot.sendMessage(chat_id, "Pilih salah satu materi disini👇.")
-    user_message_id = message.get('message_id')
+    
     
     bot.sendMessage(chat_id, f'Pesan dari bot: Chat ID Anda adalah {chat_id}, dan message ID Anda adalah {message_id} dan {user_message_id}')
 
-    bot.editMessageText((chat_id, message_id), "Selamat Datang di @Ifa_bolero_dan_rompi_bot\nDisini kita dapat belajar bersama berbagai Hal tentang Bolero/Rompi😁👍\n", reply_markup=ReplyKeyboardMarkup(
+    bot.editMessageText(sent_message, "Selamat Datang di @Ifa_bolero_dan_rompi_bot\nDisini kita dapat belajar bersama berbagai Hal tentang Bolero/Rompi😁👍\n", reply_markup=ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(text="Pengertian✍️️")],
             [KeyboardButton(text="Menyiapkan Ukuran📏")],
@@ -29,6 +30,6 @@ def command_handler(sent_message, message):
 
     # Hapus pesan yang dikirim oleh pengguna
     try:
-        bot.deleteMessage((chat_id, user_message_id))
+        bot.deleteMessage(user_message)
     except TelegramError as e:
         pass
