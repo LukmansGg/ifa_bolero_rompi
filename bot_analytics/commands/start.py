@@ -11,6 +11,7 @@ def command_handler(bot_message, msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
     sent_message = telepot.message_identifier(bot_message)
     user_message = telepot.message_identifier(message)
+    message = msg['text']
 
     bot.sendMessage(chat_id, "Pilih salah satu materi disini👇.")
     
