@@ -28,7 +28,7 @@ def search(query):
                 break
 
         # Simpan data ke dalam database dengan struktur yang diinginkan
-        db.insert({'chat_id': chat_id, 'message_id': message_id, 'links': my_results_list})
+        db.insert({'search_id': search_id, 'links': my_results_list})
         return search_id
     except requests.exceptions.HTTPError as err:
         if err.response.status_code == 429:
