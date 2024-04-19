@@ -2,7 +2,7 @@ from tinydb import TinyDB
 import telepot
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 
-TOKEN = '6745240094:AAEusYAJV5cVLT4vyDef2UnMjPRdVDSzCd8'
+TOKEN = '6745240094:AAE0s6qclbYVCpSuCCCZHl5Y3wswqTT72fc'
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
 
