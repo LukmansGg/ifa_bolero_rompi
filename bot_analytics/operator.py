@@ -11,7 +11,7 @@ from bot_analytics.command import TELEGRAM_COMMANDS
 
 #sys.path.append('commands')
 
-TOKEN = '6569008899:AAGkouDkdodOrx9vIBQGQjwvW7H8XIOk5d8'
+TOKEN = '6745240094:AAEusYAJV5cVLT4vyDef2UnMjPRdVDSzCd8'
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
 
@@ -28,9 +28,7 @@ def handle_message(msg):
                 module = importlib.import_module(module_name, ".")
                 #display text
                 bot_message = bot.sendMessage(chat_id, "tunggu...")
-                
-                # runing command class
-                 module.command_handler(bot_message, msg)
+                module.command_handler(bot_message, msg)
                 break  # keluar dari loop setelah menemukan perintah
                 
         if not command_found:
