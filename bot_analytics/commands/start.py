@@ -10,8 +10,12 @@ db = TinyDB('chat_data.json')
 def command_handler(sent_message, message):
     chat_id = sent_message['chat']['id']
     message_id = sent_message['message_id']
-
-    bot.editMessageText((chat_id, message_id), "Selamat Datang di @Ifa_bolero_dan_rompi_bot\nDisini kita dapat belajar bersama berbagai Hal tentang Bolero/Rompi😁👍\n")
+    
+    try:
+        bot.editMessageText((chat_id, message_id), "Selamat Datang di @Ifa_bolero_dan_rompi_bot\nDisini kita dapat belajar bersama berbagai Hal tentang Bolero/Rompi😁👍\n")
+    except telepot.exception.TelegramError as e:
+        bot.sendMessage(chat_id, "Selamat Datang di @Ifa_bolero_dan_rompi_bot\nDisini kita dapat belajar bersama berbagai Hal tentang Bolero/Rompi😁👍\n")
+        pass
 
     bot.sendMessage(chat_id, "Pilih salah satu materi disini👇.", reply_markup=ReplyKeyboardMarkup(
         keyboard=[
@@ -23,6 +27,7 @@ def command_handler(sent_message, message):
         ],
         resize_keyboard=True
     ))
+
     try:
         user_message_id = message.get('message_id')
         bot.deleteMessage((chat_id, user_message_id))
