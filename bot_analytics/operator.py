@@ -19,7 +19,7 @@ def handle_message(msg):
         for command in TELEGRAM_COMMANDS.keys():
             if command in message:
                 module_name = TELEGRAM_COMMANDS[command]
-                module = importlib.import_module(module_name)
+                module = importlib.import_module(module_name, ".")
                 #display text
                 sent_message = bot.sendMessage(chat_id, "tunggu...")
                 
