@@ -1,4 +1,5 @@
 import os
+import sys
 import importlib
 from tinydb import TinyDB
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
@@ -8,7 +9,9 @@ import telepot
 from programs.message import answeringMessage
 from bot_analytics.command import TELEGRAM_COMMANDS
 
-TOKEN = '6569008899:AAGqZv6i-HxdspNg_fLakTEohtN5YHDoKMI'
+sys.path.append('commands')
+
+TOKEN = '6569008899:AAEJMUCCuusUiMy64z9UaCvzJIhgtLpYjPA'
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
 
