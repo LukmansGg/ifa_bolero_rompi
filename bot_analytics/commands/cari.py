@@ -21,10 +21,10 @@ def command_handler(sent_message, message):
     
     if get_result:
         # Jika entri ditemukan, ambil links dari entri pertama
-        links = get_result[0]['links']
+        links = get_result['links'][0]
         
         # Loop through each link and print title, description, and link
-        link = result[0]['link']
+        link = get_result['links'][0]
         title = link['title']
         description = link['description']
         url = link['link']
