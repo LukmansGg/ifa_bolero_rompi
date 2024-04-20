@@ -18,6 +18,7 @@ def command_handler(sent_message, msg):
             bot.deleteMessage(chat_id, user_message_id)
         except TelegramError as e:
             pass
+
         bot.sendMessage(chat_id, "Mohon Anda masukan kata/kalimat yang ingin anda tanyakan\ncontoh: '/tanya apa itu bolero dan rompi'")
             
     else:
