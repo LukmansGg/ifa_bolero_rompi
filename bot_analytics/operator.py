@@ -41,8 +41,7 @@ def handle_message(msg):
 
             bot_message = bot.sendMessage(chat_id, "tunggu...")
             answer = gpt3(message + " bisakah membantu saya, apa fungsi /start, /tanya, dan /cari untuk menjalankan materi busana bolero dan rompi ini")
-            answeringMessage(bot_message, chat_id, message + " bisakah membantu saya, apa fungsi /start, /tanya, dan /cari untuk menjalankan materi busana bolero dan rompi ini", answer)
-
+            answeringMessage(bot_message, chat_id, f"kamu adalah bot dan user mengetik: {message}, pandu user dengan command, /mulai untuk memulai bot, /tanya untuk bertanya seputar bolero/rompi dan /cari untuk mencari informasi seputar bolero/rompi")
  
 def handle_callback(msg):
     query_id, from_id, query_data = telepot.glance(msg, flavor='callback_query')
