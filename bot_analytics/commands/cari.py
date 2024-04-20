@@ -33,17 +33,16 @@ def command_handler(sent_message, message):
         query = message_text.replace("/cari","")
         result = searching(query)
         test = Query()
-        get_result = search_db.search(test.search_id == result)
+        get_result = search_db.get(test.search_id == result)
         
-        for entry in get_result:
-            if entry:
-                link = entry['links'][0]
-                title = link['title']
-                description = link['description']
-                url = link['link']
+        if get_result:
+            link = get_result['links'][0]
+            title = link['title']
+            description = link['description']
+            url = link['link']
         
-                chat_db.insert({'chat_id': chat_id, 'message_id': message_id, 'search_id': result, 'link_page': 0})
-                editMessage(chat_id, message_id, f"[1/10]\nHasil Pencarian: [{title}]\n\n{description}\nsumber: {url}\n\npowered by [googlesearch]", InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="next",callback_data='next_search')]]))
+            chat_db.insert({'chat_id': chat_id, 'message_id': message_id, 'search_id': result, 'link_page': 0})
+            editMessage(chat_id, message_id, f"[1/10]\nHasil Pencarian: [{title}]\n\n{description}\nsumber: {url}\n\npowered by [googlesearch]", InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="next",callback_data='next_search')]]))
             
-            else:
-                editMessage(chat_id, message_id, "Tidak ditemukan hasil pencarian untuk {search_id} yang diberikan")
+        else:
+            editMessage(chat_id, message_id, "Tidak ditemukan hasil pencarian untuk {search_id} yang diberikan")
