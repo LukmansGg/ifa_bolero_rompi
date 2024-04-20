@@ -20,7 +20,7 @@ def callback_handler(msg):
     query_id, from_id, query_data = telepot.glance(msg, flavor='callback_query')
     original_message_id = msg['message']['message_id']
 
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='« Back', callback_data = 'home_pengertian')]])
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='« Back', callback_data = 'homepengertian')]])
 
     question = 'jelaskan Desain Pakaian Bolero dan Rompi secara detail dan sertakan juga sumber website nya'
     response = gpt3(question)
