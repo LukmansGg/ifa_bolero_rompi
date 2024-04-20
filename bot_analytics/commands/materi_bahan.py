@@ -1,4 +1,4 @@
-from programs.search import search
+from programs.search import searching
 import telepot
 from telepot.exception import TelegramError
 from tinydb import TinyDB, Query
