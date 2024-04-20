@@ -25,6 +25,6 @@ def callback_handler(msg):
     question = 'jelaskan Desain Pakaian Bolero dan Rompi secara detail dan sertakan juga sumber website nya'
     response = gpt3(question)
     # Edit pesan asli dengan respon
-    bot.editMessageText((from_id, original_message_id), f'-**Pengertian Bolero dan Rompi**-\n:[ Desain ]:\n\n{response}\n• https://www.powtoon.com/online-presentation/bIScLXnUsSq/analisa-desain-bolero-dan-rompi/?mode=movie', parse_mode="Markdown", reply_markup=keyboard)
+    bot.editMessageText((from_id, original_message_id), f'-<b>Pengertian Bolero dan Rompi</b>-\n:[ Desain ]:\n\n{response}\n• https://www.powtoon.com/online-presentation/bIScLXnUsSq/analisa-desain-bolero-dan-rompi/?mode=movie', parse_mode="HTML", reply_markup=keyboard)
     db.insert({'chat_id': from_id, 'message_id': original_message_id, 'question': question, 'answer': response})
   
