@@ -2,7 +2,7 @@ from programs.search import search
 import telepot
 from tinydb import TinyDB, Query
 from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton
-from bot_analytics.command import TELEGRAM_COMMANDS
+from bot_analytics.command import TELEGRAM_BOT_COMMANDS
 from config import TOKEN
 
 from programs.search import search
