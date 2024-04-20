@@ -22,7 +22,7 @@ def callback_handler(msg):
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Regenerate', callback_data = 'regenerate')]])
 
-    question = 'jelaskan sejarah bolero/rompi secara singkat menurut beberapa sumber ini https://www.womanindonesia.co.id/sejarah-jaket-bolero-di-industri-fashion/  dan https://fitinline.com/article/read/vest/ dan https://kumparan.com/hijab-lifestyle/mengulik-sejarah-rompi-yang-sudah-populer-sejak-abad-ke-17-1y1JZmTp0ZL, susun ulang sumber website di atas'
+    question = 'jelaskan sejarah bolero dan rompi'
     response = gpt3(question)
     # Edit pesan asli dengan respon
     bot.editMessageText((from_id, original_message_id), f'----Pengertian Bolero dan Rompi----\n--[Sejarah]--\n\n{response}\nhttps://www.womanindonesia.co.id/sejarah-jaket-bolero-di-industri-fashion/\nhttps://kumparan.com/hijab-lifestyle/mengulik-sejarah-rompi-yang-sudah-populer-sejak-abad-ke-17-1y1JZmTp0ZL', reply_markup=keyboard)
