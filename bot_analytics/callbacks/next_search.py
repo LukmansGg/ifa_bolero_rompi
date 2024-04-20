@@ -14,7 +14,7 @@ from programs.search import searching
 
 bot = telepot.Bot(TOKEN)
 chat_db = TinyDB('chat_data.json')
-search_db = TinyDB('')
+search_db = TinyDB('search_results.json')
 
 
 def callback_handler(msg):
