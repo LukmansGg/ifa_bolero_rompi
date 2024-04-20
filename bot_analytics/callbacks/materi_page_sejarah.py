@@ -26,4 +26,5 @@ def callback_handler(msg):
     response = gpt3(question)
     # Edit pesan asli dengan respon
     bot.editMessageText((from_id, original_message_id), response, reply_markup=keyboard)
+    db.insert({'chat_id': from_id, 'message_id': original_message_id, 'question': message, 'answer': response})
   
