@@ -34,7 +34,10 @@ def callback_handler(msg):
     question = result['question']
     response = gpt3(question)
     # Edit pesan asli dengan respon
-    bot.editMessageText((from_id, original_message_id), response, parse_mode="HTML", reply_markup=keyboard)
+    if result['header']:
+        bot.editMessageText((from_id, original_message_id), result['header'] + response, parse_mode="HTML", reply_markup=keyboard)
+    else:
+        bot.editMessageText((from_id, original_message_id), response, parse_mode="HTML", reply_markup=keyboard)
   else:
     bot.answerCallbackQuery(callback_id, "Tidak Dapat Menemukan Pesan")
     pass
