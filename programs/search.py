@@ -10,7 +10,9 @@ db = TinyDB('search_results.json')
 def search(query):
     try:
         search_id = str(uuid.uuid4())  # Generate a unique ID
-        for i, result in enumerate(search(query, num_results=20, lang='id', advanced=True), 1):
+        results = search(query, lang='id', num=20)
+        my_results_list = []
+        for i, result in enumerate(results, 1):
             string_result = str(result)
 
             title_raw = string_result.split("title=")[1]
