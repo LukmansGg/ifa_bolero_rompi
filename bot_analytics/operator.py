@@ -51,7 +51,7 @@ def handle_callback(msg):
     for callback in TELEGRAM_BOT_CALLBACKS.keys():
         if callback == query_data:
             callback_found = True
-            module_name = TELEGRAM_BOT_CALLBACKS[command]
+            module_name = TELEGRAM_BOT_CALLBACKS[callback]
             module = importlib.import_module(module_name, ".")
             #display text
             bot.answerCallbackQuery(callback_id, "Menjalankan Perintah...")
