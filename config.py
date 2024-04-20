@@ -1,1 +1,1 @@
-TOKEN = '6402398667:AAFKxfyyXEWsUJVULsC85Fmja2RQi6vZuGk' # < -- place your telegram bot token here
+TOKEN = '6402398667:AAFZRlq6VdLgsAkMqH9BPqeh9m95URWifhw' # < -- place your telegram bot token here
