@@ -19,7 +19,7 @@ def command_handler(sent_message, message):
             [KeyboardButton(text="Menyiapkan Ukuran📏")],
             [KeyboardButton(text="Pola📐")],
             [KeyboardButton(text="Bahan🧵")],
-            [KeyboardButton(text="Vidio Tutorial⏸")]
+            [KeyboardButton(text="Vidio Tutorial▶️")]
         ],
         resize_keyboard=True
     ))
