@@ -8,5 +8,5 @@ TELEGRAM_BOT_COMMANDS = {
     "Menyiapkan Ukuran📏": "bot_analytics.commands.materi_ukuran",
     "Pola📐": "bot_analytics.commands.materi_pola",
     "Bahan🧵": "bot_analytics.commands.materi_bahan",
-    "Vidio Tutorial⏸": "bot_analytics.commands.materi_vidio"
+    "Vidio Tutorial▶️": "bot_analytics.commands.materi_vidio"
 }
