@@ -24,4 +24,4 @@ def command_handler(sent_message, user_message):
 
 
     editMessage(chat_id, message_id, f"-- <b>Membuat Pola Rompi</b> --\n:[ Pola Rompi Skala Kecil ]:\n\n{answer}\n\n[ <b>https://anyflip.com/xlqjt/wttc/basic</b> ]", InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="Re-Generate",callback_data='regenerate')]]))
-    db.insert({'chat_id': chat_id, 'message_id': message_id, 'question': 'jelaskan cara membuat pola rompi dengan skala kecil, dan jelaskan berapa itu skala kecil biasanya pada kertas', 'answer': answer})
+    db.insert({'chat_id': chat_id, 'message_id': message_id, 'question': 'jelaskan cara membuat pola rompi dengan skala kecil, dan jelaskan berapa itu skala kecil biasanya pada kertas', 'answer': answer, 'header': '-- <b>Membuat Pola Bolero</b> --\n:[ Pola Rompi Skala Kecil ]:\n\n'})
