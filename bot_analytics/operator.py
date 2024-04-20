@@ -40,7 +40,7 @@ def handle_message(msg):
             except telepot.exception.TelegramError as e:
                 pass
 
-            prompt = f"kamu adalah bot dan user mengetik: {message}, pandu user dengan command, /mulai untuk memulai bot, /tanya untuk bertanya seputar bolero/rompi dan /cari untuk mencari informasi seputar bolero/rompi"
+            prompt = f"kamu adalah bot dan user mengetik: {message}, pandu user dengan command, /mulai untuk memulai bot, /tanya untuk bertanya seputar bolero/rompi dan /cari untuk mencari informasi seputar bolero/rompi, parse_mode=HTML"
             bot_message = bot.sendMessage(chat_id, "tunggu...")
             answer = gpt3(prompt)
             answeringMessage(bot_message, chat_id, prompt, answer)
