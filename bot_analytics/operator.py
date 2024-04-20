@@ -40,7 +40,7 @@ def handle_message(msg):
                 pass
 
             bot_message = bot.sendMessage(chat_id, "tunggu...")
-            answer = gpt3(message + " bisakah membantu saya, apa fungsi /start, /tanya, dan /cari untuk menjalankan materi busana bolero dan rompi ini")
+            answer = gpt3(f"kamu adalah bot dan user mengetik: {message}, pandu user dengan command, /mulai untuk memulai bot, /tanya untuk bertanya seputar bolero/rompi dan /cari untuk mencari informasi seputar bolero/rompi")
             answeringMessage(bot_message, chat_id, f"kamu adalah bot dan user mengetik: {message}, pandu user dengan command, /mulai untuk memulai bot, /tanya untuk bertanya seputar bolero/rompi dan /cari untuk mencari informasi seputar bolero/rompi")
  
 def handle_callback(msg):
