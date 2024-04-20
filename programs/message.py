@@ -10,7 +10,7 @@ def answeringMessage(bot_message, chat_id, message, response):
     bot_chat_id = bot_message['chat']['id']
     bot_message_id = bot_message['message_id']
     
-    regenerate = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Re-generate', callback_data = 'regenerate')]])
+    regenerate = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Re-Generate', callback_data = 'regenerate')]])
     
     if response == "流量异常,请尝试更换网络环境":
        response = "[Error Lalu Lintas] > silakan coba ubah lingkungan jaringan, tunggu dan coba lagi beberapa saat"
