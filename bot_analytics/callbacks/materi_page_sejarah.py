@@ -25,6 +25,6 @@ def callback_handler(msg):
     question = 'jelaskan sejarah bolero dan rompi'
     response = gpt3(question)
     # Edit pesan asli dengan respon
-    bot.editMessageText((from_id, original_message_id), f'-Pengertian Bolero dan Rompi-\n:[Sejarah]:\n\n{response}\nhttps://www.womanindonesia.co.id/sejarah-jaket-bolero-di-industri-fashion/\nhttps://kumparan.com/hijab-lifestyle/mengulik-sejarah-rompi-yang-sudah-populer-sejak-abad-ke-17-1y1JZmTp0ZL', reply_markup=keyboard)
+    bot.editMessageText((from_id, original_message_id), f'-Pengertian Bolero dan Rompi-\n:[Sejarah]:\n\n{response}\n• https://www.womanindonesia.co.id/sejarah-jaket-bolero-di-industri-fashion/\n• https://kumparan.com/hijab-lifestyle/mengulik-sejarah-rompi-yang-sudah-populer-sejak-abad-ke-17-1y1JZmTp0ZL', reply_markup=keyboard)
     db.insert({'chat_id': from_id, 'message_id': original_message_id, 'question': question, 'answer': response})
   
