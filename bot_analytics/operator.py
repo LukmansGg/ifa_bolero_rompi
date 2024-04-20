@@ -47,6 +47,7 @@ def handle_message(msg):
 def handle_callback(msg):
     query_id, from_id, query_data = telepot.glance(msg, flavor='callback_query')
     callback_id = msg['id']
+    callback_found = False
 
     for callback in TELEGRAM_BOT_CALLBACKS.keys():
         if callback == query_data:
@@ -58,7 +59,7 @@ def handle_callback(msg):
             module.callback_handler(msg)
             break  # keluar dari loop setelah menemukan perintah
 
-    if not command_found:
+    if not callback_found:
         # hanya menjawab jika tidak ada perintah yang cocok
         bot.answerCallbackQuery(callback_id, "Perintah Tidak Ditemukan")
             
