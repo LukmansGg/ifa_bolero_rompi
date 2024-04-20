@@ -36,8 +36,8 @@ def command_handler(sent_message, message):
         get_result = search_db.search(test.search_id == result)
         
         for entry in get_result:
-            if get_result:
-                link = get_result['links'][0]
+            if entry:
+                link = entry['links'][0]
                 title = link['title']
                 description = link['description']
                 url = link['link']
