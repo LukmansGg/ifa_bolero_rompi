@@ -34,7 +34,7 @@ def command_handler(sent_message, message):
         result = search(query)
         bot.sendMessage(chat_id, result)
         test = Query()
-        result = search_db.search(test.search_id == search_id)
+        result = search_db.search(test.search_id == result)
         
         for entry in result:
             if get_result:
