@@ -21,11 +21,5 @@ def command_handler(sent_message, user_message):
     editMessage(chat_id, message_id, "--  <b>Membuat Pola Bolero</b> --\n:[ Alat dan bahan ]:\n\nMenyiapkan alat dan bahan untuk membuat bolero/rompi dengan sebagai berikut :\nAlat :\na. Pensil hitam 2b \nb. Pita ukur (metlin)\nc. Penggaris pola\nd. Busur, penghapus\ne. Pensil merah biru, gunting kertas, dan lem\nf. Piranti menjahit\ng. Mesin jahit\nh. Mesin pres\n\nBahan :\na. Benang jahit\nb. Kancing\nc. Fiselin\nd. Kertas doslah merah biru \ne. Kertas payung\nf. Bahan bolero/rompi, bahan furing\n\n", InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="next", callback_data='pola')]]))
 
     bot.sendMessage(
-                chat_id,
-                "Pilih <b>Desain Pola</b> untuk apa yang akan anda gunakan.",
-                reply_markup=InlineKeyboardMarkup(
-                    inline_keyboard=[
-                        [InlineKeyboardButton(text="Pola bolero skala kecil", callback_data="pola_bolero")], [InlineKeyboardButton(text="Pola rompi skala kecil", callback_data="pola_rompi")],[InlineKeyboardButton(text="Back", callback_data="pola_back")]
-                    ]
-                )
-            )
+                chat_id, "Pilih <b>Desain Pola</b> untuk apa yang akan anda gunakan.", reply_markup=InlineKeyboardMarkup(
+                    inline_keyboard=[[InlineKeyboardButton(text="Pola Bolero skala kecil", callback_data="pola_bolero")], [InlineKeyboardButton(text="Pola Bolero skala besar", callback_data="pola_bolero_besar")], [InlineKeyboardButton(text="Pola Rompi skala kecil", callback_data="pola_rompi_kecil")],[InlineKeyboardButton(text="Pola Rompi skala besar", callback_data="pola_rompi_besar")]]))
