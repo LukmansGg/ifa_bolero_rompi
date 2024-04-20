@@ -27,7 +27,7 @@ def command_handler(sent_message, msg):
         query = message.replace("/tanya","")
         answer = gpt3(query + " pada busana bolero dan busana rompi")
         
-        regenerate = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Re-generate', callback_data = 'regenerate')]])
+        regenerate = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Re-Generate', callback_data = 'regenerate')]])
         
         editMessage(chat_id, message_id, answer, regenerate)
         db.insert({'chat_id': chat_id, 'message_id': message_id, 'question': query, 'answer': answer})
