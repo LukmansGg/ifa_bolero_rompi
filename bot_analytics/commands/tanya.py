@@ -17,11 +17,11 @@ def command_handler(sent_message, msg):
     if message == "/tanya":
         try:
             bot.deleteMessage((chat_id, user_message_id))
+            bot.editMessageText((chat_id, message_id), "Mohon Anda masukan kata/kalimat yang ingin anda tanyakan\ncontoh: '/tanya apa itu bolero dan rompi'")
         except TelegramError as e:
+            bot.sendMessage(chat_id, "Mohon Anda masukan kata/kalimat yang ingin anda tanyakan\ncontoh: '/tanya apa itu bolero dan rompi'")
             pass
 
-        bot.sendMessage(chat_id, "Mohon Anda masukan kata/kalimat yang ingin anda tanyakan\ncontoh: '/tanya apa itu bolero dan rompi'")
-            
     else:
         query = message.replace("/tanya","")
         answer = gpt3(query + " pada busana bolero dan busana rompi")
