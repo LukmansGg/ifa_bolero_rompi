@@ -17,4 +17,4 @@ def command_handler(sent_message, user_message):
     message_text = user_message['text']
     user_message_id = user_message['message_id']
 
-    editMessage(chat_id, message_id, "---- **Vidio Tutorial** ----\n\nSetelah mengetahui tentang berbagai macam materi tentang bolero/rompi terakhir akan diberikan link untuk melihat tutorial membuat bolero/rompi", InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="Bolero⏸",url='https://youtu.be/YU4Ebfi5m8g')], [InlineKeyboardButton(text="Rompi⏸",url='https://youtu.be/pLHVbeERgFw')]]))
+    editMessage(chat_id, message_id, "---- <b>Vidio Tutorial</b> ----\n\nSetelah mengetahui tentang berbagai macam materi tentang bolero/rompi terakhir akan diberikan link untuk melihat tutorial membuat bolero/rompi", InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="Bolero⏸",url='https://youtu.be/YU4Ebfi5m8g')], [InlineKeyboardButton(text="Rompi⏸",url='https://youtu.be/pLHVbeERgFw')]]))
