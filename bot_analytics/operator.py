@@ -39,9 +39,10 @@ def handle_message(msg):
             except telepot.exception.TelegramError as e:
                 pass
 
+            prompt = f"kamu adalah bot dan user mengetik: {message}, pandu user dengan command, /mulai untuk memulai bot, /tanya untuk bertanya seputar bolero/rompi dan /cari untuk mencari informasi seputar bolero/rompi"
             bot_message = bot.sendMessage(chat_id, "tunggu...")
-            answer = gpt3(f"kamu adalah bot dan user mengetik: {message}, pandu user dengan command, /mulai untuk memulai bot, /tanya untuk bertanya seputar bolero/rompi dan /cari untuk mencari informasi seputar bolero/rompi")
-            answeringMessage(bot_message, chat_id, f"kamu adalah bot dan user mengetik: {message}, pandu user dengan command, /mulai untuk memulai bot, /tanya untuk bertanya seputar bolero/rompi dan /cari untuk mencari informasi seputar bolero/rompi", answer)
+            answer = gpt3(prompt)
+            answeringMessage(bot_message, chat_id, prompt, answer)
  
 def handle_callback(msg):
     query_id, from_id, query_data = telepot.glance(msg, flavor='callback_query')
