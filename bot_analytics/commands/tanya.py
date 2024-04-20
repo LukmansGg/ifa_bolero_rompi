@@ -16,7 +16,7 @@ def command_handler(sent_message, msg):
     user_message_id = msg['message_id']
     if message == "/tanya":
         try:
-            bot.deleteMessage(chat_id, user_message_id)
+            bot.deleteMessage((chat_id, user_message_id))
         except TelegramError as e:
             pass
 
