@@ -8,7 +8,7 @@ from config import TOKEN
 from programs.gpt import gpt3
 import telepot
 from programs.message import answeringMessage
-from bot_analytics.command import TELEGRAM_COMMANDS
+from bot_analytics.command import TELEGRAM_BOT_COMMANDS
 
 #sys.path.append('commands')
 
