@@ -20,6 +20,7 @@ def handle_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
     if content_type == 'text':
         message = msg['text']
+        message_id = msg['message_id']
         command_found = False
         
         for command in TELEGRAM_BOT_COMMANDS.keys():
@@ -28,7 +29,7 @@ def handle_message(msg):
                 module_name = TELEGRAM_BOT_COMMANDS[command]
                 module = importlib.import_module(module_name, ".")
                 #display text
-                bot_message = bot.sendMessage(chat_id, "tunggu...")
+                bot_message = bot.sendMessage(chat_id, "tunggu...", reply_to_message_id=message_id)
                 module.command_handler(bot_message, msg)
                 break  # keluar dari loop setelah menemukan perintah
                 
