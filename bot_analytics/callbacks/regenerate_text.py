@@ -26,7 +26,7 @@ def callback_handler(msg):
   # Cari data pertanyaan yang sesuai dalam database
   Chat = Query()
   result = db.get(Chat.message_id == original_message_id)
-  keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Regenerate', callback_data = 'regenerate')]])
+  keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Re-Generate', callback_data = 'regenerate')]])
 
   if result:
     # Dapatkan pertanyaan dari hasil query
