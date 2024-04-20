@@ -20,11 +20,11 @@ def callback_handler(msg):
     query_id, from_id, query_data = telepot.glance(msg, flavor='callback_query')
     original_message_id = msg['message']['message_id']
 
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='penjelasan', url = 'https://prezi.com/p/tqd0rdnwggrf/bolero-dan-rompi/')], [InlineKeyboardButton(text='Regenerate', callback_data = 'regenerate')]])
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='penjelasan', url = 'https://prezi.com/p/tqd0rdnwggrf/bolero-dan-rompi/')], [InlineKeyboardButton(text='« Back', callback_data = 'home_pengertian')]])
 
     question = 'jelaskan Macam Macam Pakaian Bolero dan Rompi dari detail atau desainnya dan sertakan juga sumber website nya'
     response = gpt3(question)
     # Edit pesan asli dengan respon
-    bot.editMessageText((from_id, original_message_id), f'-Pengertian Bolero dan Rompi-\n:[Desain]:\n\n{response}\nhttps://fitinline.com/article/read/jenis-bolero/\nhttps://wevagarment.com/blog/jenis-jenis-rompi-konveksi-surabaya/', reply_markup=keyboard)
+    bot.editMessageText((from_id, original_message_id), f'-Pengertian Bolero dan Rompi-\n:[Desain]:\n\n{response}\n• https://fitinline.com/article/read/jenis-bolero/\n• https://wevagarment.com/blog/jenis-jenis-rompi-konveksi-surabaya/', reply_markup=keyboard)
     db.insert({'chat_id': from_id, 'message_id': original_message_id, 'question': question, 'answer': response})
   
