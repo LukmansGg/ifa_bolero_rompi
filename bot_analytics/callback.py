@@ -6,6 +6,6 @@ TELEGRAM_BOT_CALLBACKS = {
     "perbedaan": "bot_analytics.callbacks.materi_page_sejarah",
     "desain": "bot_analytics.callbacks.materi_page_pengertian",
     "macam": "bot_analytics.callbacks.materi_page_macam",
-    "": "bot_analytics.callbacks.next_search",
-    "": "bot_analytics.callbacks.previous_search"
+    "searchnext": "bot_analytics.callbacks.next_search",
+    "searchback": "bot_analytics.callbacks.previous_search"
 }
