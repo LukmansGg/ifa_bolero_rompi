@@ -2,7 +2,8 @@ from programs.search import search
 import telepot
 from telepot.exception import TelegramError
 from tinydb import TinyDB, Query
-from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton
+from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
+
 from bot_analytics.command import TELEGRAM_BOT_COMMANDS
 from config import TOKEN
 
