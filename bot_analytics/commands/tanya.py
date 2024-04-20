@@ -1,6 +1,6 @@
 import telepot
 from tinydb import TinyDB
-from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton
+from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 from telepot.exception import TelegramError
 from bot_analytics.command import TELEGRAM_BOT_COMMANDS
 from config import TOKEN
