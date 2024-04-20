@@ -20,11 +20,11 @@ def callback_handler(msg):
     query_id, from_id, query_data = telepot.glance(msg, flavor='callback_query')
     original_message_id = msg['message']['message_id']
 
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Regenerate', callback_data = 'regenerate')]])
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='« Back', callback_data = 'home_pengertian')]])
 
     question = 'jelaskan Desain Pakaian Bolero dan Rompi secara detail dan sertakan juga sumber website nya'
     response = gpt3(question)
     # Edit pesan asli dengan respon
-    bot.editMessageText((from_id, original_message_id), f'-Pengertian Bolero dan Rompi-\n:[Desain]:\n\n{response}\nhttps://www.powtoon.com/online-presentation/bIScLXnUsSq/analisa-desain-bolero-dan-rompi/?mode=movie', reply_markup=keyboard)
+    bot.editMessageText((from_id, original_message_id), f'-Pengertian Bolero dan Rompi-\n:[Desain]:\n\n{response}\n• https://www.powtoon.com/online-presentation/bIScLXnUsSq/analisa-desain-bolero-dan-rompi/?mode=movie', reply_markup=keyboard)
     db.insert({'chat_id': from_id, 'message_id': original_message_id, 'question': question, 'answer': response})
   
