@@ -22,9 +22,9 @@ def callback_handler(msg):
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Regenerate', callback_data = 'regenerate')]])
 
-    question = 'jelaskan artikel berikut https://fitinline.com/article/read/bolero/ yg berisi materi pengertian bolero dan desain bolero'
+    question = 'jelaskan materi pengertian bolero dan rompi, baik dari perbedaan, asal usul, desain, dll'
     response = gpt3(question)
     # Edit pesan asli dengan respon
-    bot.editMessageText((from_id, original_message_id), f'--Pengertian Bolero dan Rompi--\n[1/3]\n\nMenurut beberapa sumber:\n\n1.\n{response}', reply_markup=keyboard)
+    bot.editMessageText((from_id, original_message_id), f'--Pengertian Bolero dan Rompi--\n\nMenurut beberapa sumber:\n\n1.Url\n{response}', reply_markup=keyboard)
     db.insert({'chat_id': from_id, 'message_id': original_message_id, 'question': question, 'answer': response})
   
