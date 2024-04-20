@@ -11,6 +11,10 @@ def answeringMessage(bot_message, chat_id, message, response):
     bot_message_id = bot_message['message_id']
     
     regenerate = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Re-generate', callback_data = 'regenerate')]])
+    
+    if response == "流量异常,请尝试更换网络环境":
+       response = "[Error Lalu Lintas] > silakan coba ubah lingkungan jaringan, tunggu dan coba lagi beberapa saat"
+
     try:
         sent_message = bot.editMessageText((bot_chat_id, bot_message_id), response, reply_markup=regenerate)
         message_id = sent_message.get('message_id')
@@ -20,6 +24,3 @@ def answeringMessage(bot_message, chat_id, message, response):
         message_id = sent_message.get('message_id')
         db.insert({'chat_id': chat_id, 'message_id': message_id, 'question': message, 'answer': response})
         pass
-
-def regenerate_answer():
-    return "Wip"
