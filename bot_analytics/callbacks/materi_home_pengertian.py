@@ -26,4 +26,4 @@ def callback_handler(msg):
         [InlineKeyboardButton(text="› Perbedaan Bolero/Rompi ‹",callback_data='perbedaan')],
         [InlineKeyboardButton(text="› Desain Bolero/Rompi ‹",callback_data='desain')],
         [InlineKeyboardButton(text="› Macam Bolero/Rompi ‹",callback_data='macam')]
-    ])) 
+    ]), text="Teks baru di sini")
