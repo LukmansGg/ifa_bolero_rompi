@@ -45,10 +45,10 @@ def command_handler(sent_message, message):
                 reply_markup = InlineKeyboardMarkup(inline_keyboard=[
                     [InlineKeyboardButton(text="next",callback_data='next_search')]
                 ]))
-            else:
+            except:
                 pass
         else:
             try:
                 bot.editMessageText((chat_id, message_id), "Tidak ditemukan hasil pencarian untuk search_id yang diberikan")
-            else:
+            except:
                 pass
