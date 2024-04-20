@@ -6,7 +6,7 @@ TELEGRAM_BOT_COMMANDS = {
     "/cari": "bot_analytics.commands.cari",
     "Pengertian✍️️": "bot_analytics.commands.materi_pengertian",
     "Menyiapkan Ukuran📏": "bot_analytics.commands.materi_ukuran",
-    "Pola📐": "bot_analytics.commands.materi_pola"
-    #"Bahan🧵": "bot_analytics.commands.materi_bahan",
-    #"Vidio Tutorial⏸": "bot_analytics.commands.materi_vidio"
+    "Pola📐": "bot_analytics.commands.materi_pola",
+    "Bahan🧵": "bot_analytics.commands.materi_bahan",
+    "Vidio Tutorial⏸": "bot_analytics.commands.materi_vidio"
 }
