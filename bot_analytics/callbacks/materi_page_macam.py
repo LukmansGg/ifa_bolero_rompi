@@ -25,6 +25,6 @@ def callback_handler(msg):
     question = 'jelaskan Macam Macam Pakaian Bolero dan Rompi dari detail atau desainnya dan sertakan juga sumber website nya'
     response = gpt3(question)
     # Edit pesan asli dengan respon
-    bot.editMessageText((from_id, original_message_id), f'-**Pengertian Bolero dan Rompi**-\n:[ Desain ]:\n\n{response}\n• https://fitinline.com/article/read/jenis-bolero/\n• https://wevagarment.com/blog/jenis-jenis-rompi-konveksi-surabaya/', reply_markup=keyboard)
+    bot.editMessageText((from_id, original_message_id), f'-**Pengertian Bolero dan Rompi**-\n:[ Desain ]:\n\n{response}\n• https://fitinline.com/article/read/jenis-bolero/\n• https://wevagarment.com/blog/jenis-jenis-rompi-konveksi-surabaya/', parse_mode="Markdown", reply_markup=keyboard)
     db.insert({'chat_id': from_id, 'message_id': original_message_id, 'question': question, 'answer': response})
   
