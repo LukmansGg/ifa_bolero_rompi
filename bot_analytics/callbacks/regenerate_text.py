@@ -20,6 +20,7 @@ def callback_handler(msg):
   query_id, from_id, query_data = telepot.glance(msg, flavor='callback_query')
   # Dapatkan ID pesan dari data callback
   original_message_id = msg['message']['message_id']
+  callback_id = msg['id']
 
   # Dapatkan ID obrolan dari data callback
   
@@ -35,5 +36,6 @@ def callback_handler(msg):
     # Edit pesan asli dengan respon
     bot.editMessageText((from_id, original_message_id), response, parse_mode="HTML", reply_markup=keyboard)
   else:
+    bot.answerCallbackQuery(callback_id, "Tidak Dapat Menemukan Pesan")
     pass
 
