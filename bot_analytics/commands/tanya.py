@@ -5,7 +5,7 @@ from telepot.exception import TelegramError
 from bot_analytics.command import TELEGRAM_BOT_COMMANDS
 from config import TOKEN
 
-from programs.gpt import gpt3
+from programs.gpt import gpt3, gpt4
 from programs.message import editMessage
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
@@ -25,7 +25,7 @@ def command_handler(sent_message, msg):
 
     else:
         query = message.replace("/tanya","")
-        answer = gpt3(query + " pada busana bolero dan busana rompi")
+        answer = gpt4(query + " pada busana bolero dan busana rompi")
         
         regenerate = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Re-generate', callback_data = 'regenerate')]])
         
