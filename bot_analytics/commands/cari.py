@@ -42,8 +42,8 @@ def command_handler(sent_message, message):
                 description = link['description']
                 url = link['link']
         
-                chat_db.insert({'chat_id': chat_id, 'message_id': message_id, 'search_id': search_id, 'link_page': 0})
+                chat_db.insert({'chat_id': chat_id, 'message_id': message_id, 'search_id': result, 'link_page': 0})
                 editMessage(chat_id, message_id, f"[1/10]\nHasil Pencarian: [{title}]\n\n{description}\nsumber: {url}\n\npowered by [googlesearch]", InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="next",callback_data='next_search')]]))
             
             else:
-                editMessage(chat_id, message_id, "Tidak ditemukan hasil pencarian untuk search_id yang diberikan")
+                editMessage(chat_id, message_id, "Tidak ditemukan hasil pencarian untuk {search_id} yang diberikan")
