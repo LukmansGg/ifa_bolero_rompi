@@ -33,7 +33,7 @@ def callback_handler(msg):
     question = result['question']
     response = gpt3(question)
     # Edit pesan asli dengan respon
-    bot.editMessageText((from_id, original_message_id), response, parse_mode="Markdown", reply_markup=keyboard)
+    bot.editMessageText((from_id, original_message_id), response, parse_mode="HTML", reply_markup=keyboard)
   else:
     pass
 
