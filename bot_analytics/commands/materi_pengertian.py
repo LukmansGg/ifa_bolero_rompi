@@ -15,7 +15,7 @@ def command_handler(sent_message, user_message):
     chat_id = sent_message['chat']['id']
     message_id = sent_message['message_id']
     message_text = user_message['text']
-    user_message_id = message['message_id']
+    user_message_id = user_message['message_id']
 
     try:
         bot.editMessageText((chat_id, message_id), "Disini kita akan belajar Materi Pengertian tentang bolero/rompi berikut, pilih salah satu👇", reply_markup = InlineKeyboardMarkup(inline_keyboard=[
