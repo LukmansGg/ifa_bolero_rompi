@@ -32,9 +32,11 @@ def command_handler(sent_message, message):
     else:
         query = message_text.replace("/cari","")
         result = search(query)
+        bot.sendMessage(chat_id, result)
         test = Query()
         get_result = search_db.get(test.search_id == result)
-    
+        
+
         if get_result:
             link = get_result['links'][0]
             title = link['title']
