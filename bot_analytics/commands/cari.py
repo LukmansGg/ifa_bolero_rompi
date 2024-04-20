@@ -22,15 +22,16 @@ def command_handler(sent_message, message):
     if message_text == "/cari":
         try:
             bot.deleteMessage((chat_id, user_message_id))
+            bot.editMessageText((chat_id, message_id), "Mohon Anda masukan kata/kalimat yang ingin di cari\ncontoh: '/cari busana bolero'")
         except TelegramError as e:
+            bot.sendMessage(chat_id, "Mohon Anda masukan kata/kalimat yang ingin di cari\ncontoh: '/cari busana bolero'")
             pass
             
-        bot.sendMessage(chat_id, "Mohon Anda masukan kata/kalimat yang ingin di cari\ncontoh: '/cari busana bolero'")
     else:
         query = message_text.replace("/cari","")
         result = search(query)
-        url = Query()
-        get_result = search_db.get(url.search_id == result)
+        test = Query()
+        get_result = search_db.get(test.search_id == result)
     
         if get_result:
             link = get_result['links'][0]
@@ -51,4 +52,5 @@ def command_handler(sent_message, message):
             try:
                 bot.editMessageText((chat_id, message_id), "Tidak ditemukan hasil pencarian untuk search_id yang diberikan")
             except:
+                bot.sendMessage((chat_id, message_id), "Tidak ditemukan hasil pencarian untuk search_id yang diberikan")
                 pass
