@@ -25,6 +25,6 @@ def callback_handler(msg):
     question = 'jelaskan materi pengertian bolero dan rompi, baik dari perbedaan, asal usul, desain, dll'
     response = gpt3(question)
     # Edit pesan asli dengan respon
-    bot.editMessageText((from_id, original_message_id), f'----[Pengertian Bolero dan Rompi]----\n\nMenurut beberapa sumber:\n\n1.Url\n{response}', reply_markup=keyboard)
+    bot.editMessageText((from_id, original_message_id), f'-Pengertian Bolero dan Rompi-\n\nMenurut beberapa sumber:\n\n1.Url\n{response}', reply_markup=keyboard)
     db.insert({'chat_id': from_id, 'message_id': original_message_id, 'question': question, 'answer': response})
   
