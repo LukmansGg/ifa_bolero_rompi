@@ -29,8 +29,6 @@ def command_handler(sent_message, msg):
         
         regenerate = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Re-generate', callback_data = 'regenerate')]])
         
-        try:
-            bot.editMessageText((chat_id, message_id), answer, reply_markup=regenerate)
-            db.insert({'chat_id': chat_id, 'message_id': message_id, 'question': query, 'answer': answer})
-        except telepot.exception.TelegramError as e:
-            pass
+        editMessage(chat_id, message_id, answer, regenerate)
+        db.insert({'chat_id': chat_id, 'message_id': message_id, 'question': query, 'answer': answer})
+        
