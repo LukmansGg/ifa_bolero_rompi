@@ -45,4 +45,4 @@ def command_handler(sent_message, message):
             editMessage(chat_id, message_id, f"[1/10]\n<b>Hasil Pencarian: [{title}]</b>\n\n{description}\nsumber: {url}\n\npowered by [googlesearch]", InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="next",callback_data='next_search')]]))
             
         else:
-            editMessage(chat_id, message_id, "Tidak ditemukan hasil pencarian untuk <b>{search id}</b> yang diberikan")
+            editMessage(chat_id, message_id, "Tidak ditemukan hasil pencarian untuk <b>{search-id}</b> yang diberikan")
