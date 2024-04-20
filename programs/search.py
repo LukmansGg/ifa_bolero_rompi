@@ -38,5 +38,5 @@ def search(query):
             return "Maaf, saat ini sedang terdapat gangguan pada sistem jaringan Google kami 🙏"
     except Exception as e:
         # Handle any other unknown errors gracefully
-        return "An unknown error occurred: {e}"
+        return f"An unknown error occurred: {e}"
 
