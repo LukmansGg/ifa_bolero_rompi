@@ -29,13 +29,13 @@ def answeringMessage(bot_message, chat_id, message, response):
 def editMessage(chat_id, message_id, message, keyboard=None):
     if keyboard:
         try:
-            bot.editMessageText((chat_id, message_id), message, reply_markup = keyboard)
+            bot.editMessageText((chat_id, message_id), message, parse_mode="Markdown", reply_markup = keyboard)
         except:
-            bot.sendMessage(chat_id, message, reply_markup = keyboard)
+            bot.sendMessage(chat_id, message, parse_mode="Markdown", reply_markup = keyboard)
             
     else:
         try:
-            bot.editMessageText((chat_id, message_id), message)
+            bot.editMessageText((chat_id, message_id), message, parse_mode="Markdown")
         except:
-            bot.sendMessage(chat_id, message)
+            bot.sendMessage(chat_id, message, parse_mode="Markdown")
     
