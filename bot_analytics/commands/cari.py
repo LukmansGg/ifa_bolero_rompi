@@ -5,6 +5,7 @@ from tinydb import TinyDB, Query
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 
 from bot_analytics.command import TELEGRAM_BOT_COMMANDS
+from programs.message import editMessage
 from config import TOKEN
 
 from programs.search import search
@@ -22,10 +23,11 @@ def command_handler(sent_message, message):
     if message_text == "/cari":
         try:
             bot.deleteMessage((chat_id, user_message_id))
-            bot.editMessageText((chat_id, message_id), "Mohon Anda masukan kata/kalimat yang ingin di cari\ncontoh: '/cari busana bolero'")
+ 
         except TelegramError as e:
-            bot.sendMessage(chat_id, "Mohon Anda masukan kata/kalimat yang ingin di cari\ncontoh: '/cari busana bolero'")
             pass
+
+        editMessage(chat_id, message_id, "Mohon Anda masukan kata/kalimat yang ingin di cari\ncontoh: '/cari busana bolero'")
             
     else:
         query = message_text.replace("/cari","")
@@ -41,16 +43,7 @@ def command_handler(sent_message, message):
         
 
             chat_db.insert({'chat_id': chat_id, 'message_id': message_id, 'search_id': search_id, 'link_page': 0})
-            try:
-                bot.editMessageText((chat_id, message_id), f"[1/10]\nHasil Pencarian: [{title}]\n\n{description}\nsumber: {url}\n\npowered by [googlesearch]",
-                reply_markup = InlineKeyboardMarkup(inline_keyboard=[
-                    [InlineKeyboardButton(text="next",callback_data='next_search')]
-                ]))
-            except:
-                pass
+            editMessage(chat_id, message_id, f"[1/10]\nHasil Pencarian: [{title}]\n\n{description}\nsumber: {url}\n\npowered by [googlesearch]", InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="next",callback_data='next_search')]]))
+            
         else:
-            try:
-                bot.editMessageText((chat_id, message_id), "Tidak ditemukan hasil pencarian untuk search_id yang diberikan")
-            except:
-                bot.sendMessage((chat_id, message_id), "Tidak ditemukan hasil pencarian untuk search_id yang diberikan")
-                pass
+            editMessage(chat_id, message_id, "Tidak ditemukan hasil pencarian untuk search_id yang diberikan")
