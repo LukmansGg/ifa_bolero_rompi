@@ -24,3 +24,18 @@ def answeringMessage(bot_message, chat_id, message, response):
         message_id = sent_message.get('message_id')
         db.insert({'chat_id': chat_id, 'message_id': message_id, 'question': message, 'answer': response})
         pass
+
+
+def editMessage(chat_id, message_id, message, keyboard=None):
+    if keyboard:
+        try:
+            bot.editMessageText((chat_id, message_id), message, keyboard)
+        except:
+            bot.sendMessage(chat_id, message, keyboard)
+            
+    else:
+        try:
+            bot.editMessageText((chat_id, message_id), message)
+        except:
+            bot.sendMessage(chat_id, message)
+    
