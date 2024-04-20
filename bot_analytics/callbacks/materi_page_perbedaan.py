@@ -25,6 +25,6 @@ def callback_handler(msg):
     question = 'jelaskan Perbedaan Pakaian Bolero dan Rompi dari segi desain, asal usul, proses pembuatan, dan bahan, sertakan juga sumber website nya'
     response = gpt3(question)
     # Edit pesan asli dengan respon
-    bot.editMessageText((from_id, original_message_id), f'-Pengertian Bolero dan Rompi-\n:[Perbedaan]:\n\n{response}', reply_markup=keyboard)
+    bot.editMessageText((from_id, original_message_id), f'-Pengertian Bolero dan Rompi-\n:[ Perbedaan ]:\n\n{response}', reply_markup=keyboard)
     db.insert({'chat_id': from_id, 'message_id': original_message_id, 'question': question, 'answer': response})
   
