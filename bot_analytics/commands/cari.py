@@ -1,4 +1,4 @@
-from programs.search import search
+from programs.search import searching
 import telepot
 from telepot.exception import TelegramError
 from tinydb import TinyDB, Query
@@ -31,7 +31,7 @@ def command_handler(sent_message, message):
             
     else:
         query = message_text.replace("/cari","")
-        result = search(query)
+        result = searching(query)
         bot.sendMessage(chat_id, result)
         test = Query()
         result = search_db.search(test.search_id == result)
