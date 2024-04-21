@@ -3,18 +3,20 @@ import sys
 import importlib
 from tinydb import TinyDB, Query
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
+import assemblyai as aai
 
-from config import TOKEN
+from config import TOKEN, AAI_TOKEN
 from programs.gpt import gpt3
 import telepot
 from programs.message import answeringMessage
 from bot_analytics.command import TELEGRAM_BOT_COMMANDS
 from bot_analytics.callback import TELEGRAM_BOT_CALLBACKS
 
-#sys.path.append('commands')
-
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
+aai.settings.api_key = AAI_TOKEN
+transcriber = aai.Transcriber()
+
 
 def handle_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
@@ -63,4 +65,24 @@ def handle_callback(msg):
     if not callback_found:
         # hanya menjawab jika tidak ada perintah yang cocok
         bot.answerCallbackQuery(callback_id, "Perintah Tidak Ditemukan")
+
+
+def handle_voice_message(msg):
+    content_type, chat_type, chat_id = telepot.glance(msg)
+
+    # Memeriksa apakah pesan merupakan pesan suara
+    if content_type == 'voice':
+        # Mendapatkan file_id dari pesan suara
+        file_id = msg['voice']['file_id']
+        # Mendapatkan informasi tentang file suara menggunakan file_id
+        file_info = bot.get_file(file_id)
+        # Mendapatkan URL file suara
+        file_url = "https://api.telegram.org/file/bot{}/{}".format(TOKEN, file_info['file_path'])
+
+        # Melakukan transkripsi menggunakan AssemblyAI
+        transcript = transcriber.transcribe(file_url)
+        # Mengirimkan hasil transkripsi kembali ke pengguna
+        bot.sendMessage(chat_id, transcript.text)
+
+
             
