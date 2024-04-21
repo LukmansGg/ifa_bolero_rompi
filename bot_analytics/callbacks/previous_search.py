@@ -27,7 +27,7 @@ def callback_handler(msg):
             url = link['link']
             
             keyboard = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='»Next»', callback_data='searchnext')], [InlineKeyboardButton(text='«Previous«', callback_data='searchback')]])
-            editMessage(from_id, chat_message_id, f"<b>[{next_page_value - 1}/10] Hasil Pencarian: [{title}]</b>\n\n{description}\n\nsumber: {url}\n\npowered by [googlesearch]", keyboard)
+            editMessage(from_id, chat_message_id, f"<b>[{next_page_value - 1}/10] Hasil Pencarian: [{title}]</b>\n\n{description}n\n[ <b>{url}</b> ]\n\npowered by [googlesearch]", keyboard)
             chat_db.update({'link_page': next_page_value}, query.message_id == chat_message_id)
             
     else:
