@@ -1,4 +1,5 @@
 flask
+assemblyai
 requests
 telepot
 g4f
