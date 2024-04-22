@@ -14,6 +14,7 @@ from bot_analytics.callback import TELEGRAM_BOT_CALLBACKS
 
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
+user_db = TinyDb('all_user_id.json')
 aai.settings.api_key = AAI_TOKEN
 transcriber = aai.Transcriber()
 
@@ -23,6 +24,7 @@ def handle_message(msg):
     if content_type == 'text':
         message = msg['text']
         message_id = msg['message_id']
+        user_db.insert({'user_id': chat_id})
         command_found = False
         
         for command in TELEGRAM_BOT_COMMANDS.keys():
