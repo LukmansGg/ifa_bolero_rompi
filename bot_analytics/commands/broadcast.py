@@ -27,15 +27,13 @@ def command_handler(sent_message, msg):
     else:
         news = message.replace("/tanya","")
          
-        editMessage(chat_id, message_id, news)
+        try:
+            bot.deleteMessage((chat_id, message_id))
+        except TelegramError as e:
+            pass
         all_users = user_db.all()
     
         for user_data in all_users:
             user_id = user_data['user_id']
             bot.sendMessage(user_id, message_text)
-
-        try:
-            bot.deleteMessage((chat_id, message_id))
-        except TelegramError as e:
-            pass
         
