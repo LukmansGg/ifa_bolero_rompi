@@ -1,4 +1,5 @@
 import telepot
+import time
 from tinydb import TinyDB, Query
 from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton
 from bot_analytics.command import TELEGRAM_BOT_COMMANDS
