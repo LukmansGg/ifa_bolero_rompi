@@ -12,7 +12,7 @@ db = TinyDB('welcome_chat.json')
 
 def command_handler(sent_message, message):
     chat_id = sent_message['chat']['id']
-
+    message_id = sent_message['message_id']
     # Menghasilkan ID unik berdasarkan timestamp
     unique_id = int(time.time())
 
