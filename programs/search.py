@@ -26,7 +26,7 @@ def searching(query):
             my_results_list.append({'title': title_result, 'description': description_result, 'link': link_result})
 
             # Limit to sending only the first 10 search results
-            if i >= 10:
+            if i >= 20:
                 break
 
         # Simpan data ke dalam database dengan struktur yang diinginkan
