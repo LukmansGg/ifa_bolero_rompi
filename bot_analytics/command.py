@@ -11,7 +11,6 @@ TELEGRAM_BOT_COMMANDS = {
     "Pola📐": "bot_analytics.commands.materi_pola",
     "Bahan🧵": "bot_analytics.commands.materi_bahan",
     "Vidio Tutorial▶️": "bot_analytics.commands.materi_vidio",
-bot_analytics.commands.start
     "Bolero Skala Kecil": "bot_analytics.commands.materi_pola_bolero_kecil",
     "Bolero Skala Besar": "bot_analytics.commands.materi_pola_bolero_besar",
     "Rompi Skala Kecil": "bot_analytics.commands.materi_pola_rompi_kecil",
