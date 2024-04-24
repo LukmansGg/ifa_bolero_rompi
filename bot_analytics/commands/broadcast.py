@@ -25,7 +25,7 @@ def command_handler(sent_message, msg):
         editMessage(chat_id,message_id,  "Mohon Anda masukan kata/kalimat yang ingin anda broadcast pada pengguna lain\ncontoh: '/broadcast info menjual busana bolero'")
 
     else:
-        news = message.replace("/tanya","")
+        news = message.replace("/broadcast","")
          
         try:
             bot.deleteMessage((chat_id, message_id))
