@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 import importlib
 from tinydb import TinyDB, Query
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
@@ -19,7 +20,7 @@ welcome_db = TinyDB('welcome_chat.json')
 
 aai.settings.api_key = AAI_TOKEN
 transcriber = aai.Transcriber()
-
+unique_id = int(time.time())
 
 def handle_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
@@ -44,7 +45,7 @@ def handle_message(msg):
                 if "/start" in message:
                     pass
                 else:
-                    welcome_db.insert({'chat_id': chat_id, 'message_id': message_id, 'sent_message_id': bot_message['message_id'], 'is_welcome': False})
+                    welcome_db.insert({'id': unique_id, 'chat_id': chat_id, 'message_id': message_id, 'sent_message_id': bot_message['message_id'], 'is_welcome': False})
 
                 module.command_handler(bot_message, msg)
                 break  # keluar dari loop setelah menemukan perintah
