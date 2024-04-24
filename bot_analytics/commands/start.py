@@ -9,6 +9,7 @@ db = TinyDB('welcome_chat.json')
 
 def command_handler(sent_message, message):
     chat_id = sent_message['chat']['id']
+    message_id = sent_message['message_id']
 
     # Memeriksa apakah ada entri dalam basis data
     if db:
@@ -20,8 +21,6 @@ def command_handler(sent_message, message):
             bot.deleteMessage((chat_id, last_entry['message_id']))
             bot.deleteMessage((chat_id, last_entry['sent_message_id']))
 
-    # Menampilkan pesan selamat datang
-    message_id = sent_message['message_id']
     editMessage(chat_id, message_id, "Selamat Datang di @Ifa_bolero_dan_rompi_bot\nDisini kita dapat belajar bersama berbagai Hal tentang Bolero/Rompi😁👍\n")
 
     # Mengirim pesan untuk dipilih
