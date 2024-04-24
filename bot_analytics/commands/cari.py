@@ -40,8 +40,12 @@ def command_handler(sent_message, message):
             title = link['title']
             description = link['description']
             url = link['link']
-        
-            chat_db.insert({'chat_id': chat_id, 'message_id': message_id, 'search_id': result, 'link_page': 0})
+            
+            try:
+                chat_db.insert({'chat_id': chat_id, 'message_id': message_id, 'search_id': result, 'link_page': 0})
+            except:
+                pass
+
             editMessage(chat_id, message_id, f"[1/20]\n<b>Hasil Pencarian:\n [{title}]</b>\n\n{description}\n\n[ <b>{url}</b> ]\n\npowered by [googlesearch]", InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="next",callback_data='searchnext')]]))
             
         else:
