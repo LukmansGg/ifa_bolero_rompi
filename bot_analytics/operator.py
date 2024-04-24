@@ -15,6 +15,8 @@ from bot_analytics.callback import TELEGRAM_BOT_CALLBACKS
 bot = telepot.Bot(TOKEN)
 db = TinyDB('chat_data.json')
 user_db = TinyDB('all_user_id.json')
+welcome_db = TinyDB('welcome_chat.json')
+
 aai.settings.api_key = AAI_TOKEN
 transcriber = aai.Transcriber()
 
@@ -42,7 +44,7 @@ def handle_message(msg):
                 if "/start" in message:
                     pass
                 else:
-                    db.insert({'chat_id': chat_id, 'message_id': message_id, 'sent_message_id': bot_message['message_id'], 'is_welcome': False})
+                    welcome_db.insert({'chat_id': chat_id, 'message_id': message_id, 'sent_message_id': bot_message['message_id'], 'is_welcome': False})
 
                 module.command_handler(bot_message, msg)
                 break  # keluar dari loop setelah menemukan perintah
