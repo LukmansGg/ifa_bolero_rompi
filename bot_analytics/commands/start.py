@@ -21,8 +21,15 @@ def command_handler(sent_message, message):
     if last_entry:
         last_entry = last_entry[-1]
         if last_entry.get('is_welcome', False):
-            bot.deleteMessage((chat_id, last_entry['message_id']))
-            bot.deleteMessage((chat_id, last_entry['sent_message_id']))
+            try:
+                bot.deleteMessage((chat_id, last_entry['message_id']))
+            except telepot.exception.TelegramError as e:
+                pass
+
+            try:
+                bot.deleteMessage((chat_id, last_entry['sent_message_id']))
+            except telepot.exception.TelegramError as e:
+                pass
 
     editMessage(chat_id, message_id, "Selamat Datang di @Ifa_bolero_dan_rompi_bot\nDisini kita dapat belajar bersama berbagai Hal tentang Bolero/Rompi😁👍\n")
 
