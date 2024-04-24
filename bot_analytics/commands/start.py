@@ -1,6 +1,10 @@
-import time
 import telepot
-from tinydb import TinyDB
+from tinydb import TinyDB, Query
+from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton
+from bot_analytics.command import TELEGRAM_BOT_COMMANDS
+from config import TOKEN
+from programs.message import editMessage
+
 
 bot = telepot.Bot(TOKEN)
 db = TinyDB('welcome_chat.json')
