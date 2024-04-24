@@ -24,7 +24,7 @@ def handle_message(msg):
     if content_type == 'text':
         message = msg['text']
         message_id = msg['message_id']
-        user_db.insert({'user_id': chat_id})
+        
         command_found = False
         
         for command in TELEGRAM_BOT_COMMANDS.keys():
@@ -53,7 +53,7 @@ def handle_callback(msg):
     query_id, from_id, query_data = telepot.glance(msg, flavor='callback_query')
     callback_id = msg['id']
     callback_found = False
-
+    
     for callback in TELEGRAM_BOT_CALLBACKS.keys():
         if callback == query_data:
             callback_found = True
