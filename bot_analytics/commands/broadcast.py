@@ -35,5 +35,5 @@ def command_handler(sent_message, msg):
     
         for user_data in all_users:
             user_id = user_data['user_id']
-            bot.sendMessage(user_id, message_text)
+            bot.sendMessage(user_id, news)
         
