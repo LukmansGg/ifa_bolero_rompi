@@ -44,6 +44,8 @@ def handle_message(msg):
                 bot_message = bot.sendMessage(chat_id, "tunggu...", reply_to_message_id=message_id)
                 if "/start" in message:
                     pass
+                elif if "/mulai" in message:
+                    pass
                 else:
                     welcome_db.insert({'id': unique_id, 'chat_id': chat_id, 'message_id': message_id, 'sent_message_id': bot_message['message_id'], 'is_welcome': False})
 
