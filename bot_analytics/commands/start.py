@@ -10,13 +10,15 @@ db = TinyDB('welcome_chat.json')
 def command_handler(sent_message, message):
     chat_id = sent_message['chat']['id']
 
-    # Mengambil data terakhir dari database
-    last_entry = db.all()[-1]
+    # Memeriksa apakah ada entri dalam basis data
+    if db:
+        # Mengambil data terakhir dari database
+        last_entry = db.all()[-1]
 
-    # Memeriksa apakah data terakhir adalah teks selamat datang
-    if last_entry.get('is_welcome', False):
-        bot.deleteMessage((chat_id, last_entry['message_id']))
-        bot.deleteMessage((chat_id, last_entry['sent_message_id']))
+        # Memeriksa apakah data terakhir adalah teks selamat datang
+        if last_entry.get('is_welcome', False):
+            bot.deleteMessage((chat_id, last_entry['message_id']))
+            bot.deleteMessage((chat_id, last_entry['sent_message_id']))
 
     # Menampilkan pesan selamat datang
     message_id = sent_message['message_id']
