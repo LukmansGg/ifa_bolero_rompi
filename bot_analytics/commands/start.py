@@ -34,8 +34,9 @@ def command_handler(sent_message, message):
         ],
         resize_keyboard=True
     ))
-    unique_id = str(uuid.uuid4())
-    db.insert({'id': unique_id, 'chat_id': chat_id, 'message_id': message_id, 'sent_message_id': welcome_chat['message_id'], 'is_welcome': True})
+    unique_id_2 = str(uuid.uuid4())
+    print(unique_id_2)
+    db.insert({'id': unique_id_2, 'chat_id': chat_id, 'message_id': message_id, 'sent_message_id': welcome_chat['message_id'], 'is_welcome': True})
 
     try:
         user_message_id = message.get('message_id')
