@@ -48,6 +48,7 @@ def handle_message(msg):
                     pass
                 else:
                     unique_id = str(uuid.uuid4())
+                    print(unique_id)
                     welcome_db.insert({'id': unique_id, 'chat_id': chat_id, 'message_id': message_id, 'sent_message_id': bot_message['message_id'], 'is_welcome': False})
 
                 module.command_handler(bot_message, msg)
