@@ -1,5 +1,6 @@
 import telepot
 import uuid
+import time
 from tinydb import TinyDB
 from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton
 from config import TOKEN
@@ -18,9 +19,15 @@ def command_handler(sent_message, message):
         if last_entry.get('is_welcome', False):
             try:
                 bot.deleteMessage((chat_id, last_entry['message_id']))
+            except telepot.exception.TelegramError as e:
+                pass
+            
+            try:
                 bot.deleteMessage((chat_id, last_entry['sent_message_id']))
             except telepot.exception.TelegramError as e:
                 pass
+            
+
 
     editMessage(chat_id, message_id, "Selamat Datang di @Ifa_bolero_dan_rompi_bot\nDisini kita dapat belajar bersama berbagai Hal tentang Bolero/Rompi😁👍\n")
 
@@ -34,7 +41,7 @@ def command_handler(sent_message, message):
         ],
         resize_keyboard=True
     ))
-    unique_id_2 = str(uuid.uuid4())
+    unique_id_2 = str(time.time())
     print(unique_id_2)
     db.insert({'id': unique_id_2, 'chat_id': chat_id, 'message_id': message_id, 'sent_message_id': welcome_chat['message_id'], 'is_welcome': True})
 
