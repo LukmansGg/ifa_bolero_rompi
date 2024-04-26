@@ -12,9 +12,6 @@ def command_handler(sent_message, message):
     chat_id = sent_message['chat']['id']
     message_id = sent_message['message_id']
     
-    # Generate a unique ID using UUID
-    unique_id = str(uuid.uuid4())
-
     last_entry = db.all()
     if last_entry:
         last_entry = last_entry[-1]
@@ -37,6 +34,7 @@ def command_handler(sent_message, message):
         ],
         resize_keyboard=True
     ))
+    unique_id = str(uuid.uuid4())
     db.insert({'id': unique_id, 'chat_id': chat_id, 'message_id': message_id, 'sent_message_id': welcome_chat['message_id'], 'is_welcome': True})
 
     try:
