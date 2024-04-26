@@ -42,15 +42,6 @@ def handle_message(msg):
                 module = importlib.import_module(module_name, ".")
                 #display text
                 bot_message = bot.sendMessage(chat_id, "tunggu...", reply_to_message_id=message_id)
-                if "/start" in message:
-                    pass
-                elif "/mulai" in message:
-                    pass
-                else:
-                    unique_id = str(uuid.uuid4())
-                    print(unique_id)
-                    welcome_db.insert({'id': unique_id, 'is_welcome': False})
-
                 module.command_handler(bot_message, msg)
                 break  # keluar dari loop setelah menemukan perintah
                 
