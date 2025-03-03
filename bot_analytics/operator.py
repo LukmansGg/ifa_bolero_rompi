@@ -78,26 +78,41 @@ def handle_callback(msg):
             break  # keluar dari loop setelah menemukan perintah
 
     if not callback_found:
-        # hanya menjawab jika tidak ada perintah yang cocok
-        bot.answerCallbackQuery(callback_id, "Perintah Tidak Ditemukan")
-
+        bot.answerCallbackQuery(callback_id, "⚠️ Callback tidak dikenal. Silakan coba lagi.")
+        print(f"⚠️ Unknown callback received: {query_data}")  # Logs the unknown callback
 
 def handle_voice_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
 
-    # Memeriksa apakah pesan merupakan pesan suara
     if content_type == 'voice':
-        # Mendapatkan file_id dari pesan suara
         file_id = msg['voice']['file_id']
-        # Mendapatkan informasi tentang file suara menggunakan file_id
-        file_info = bot.get_file(file_id)
-        # Mendapatkan URL file suara
-        file_url = "https://api.telegram.org/file/bot{}/{}".format(TOKEN, file_info['file_path'])
+        file_info = bot.getFile(file_id)
+        file_path = file_info['file_path']
+        
+        # Download the voice message
+        file_url = f"https://api.telegram.org/file/bot{TOKEN}/{file_path}"
+        local_filename = f"temp_voice_{uuid.uuid4()}.ogg"
+        
+        try:
+            response = requests.get(file_url)
+            with open(local_filename, 'wb') as f:
+                f.write(response.content)
 
-        # Melakukan transkripsi menggunakan AssemblyAI
-        transcript = transcriber.transcribe(file_url)
-        # Mengirimkan hasil transkripsi kembali ke pengguna
-        bot.sendMessage(chat_id, transcript.text)
+            # Transcribe using AssemblyAI
+            upload_url = aai.upload(local_filename)  # Upload file to AssemblyAI
+            transcript = transcriber.transcribe(upload_url)
+            
+            # Send the transcription result
+            bot.sendMessage(chat_id, transcript.text)
+        
+        except Exception as e:
+            bot.sendMessage(chat_id, f"Terjadi kesalahan dalam transkripsi: {str(e)}")
+        
+        finally:
+            # Cleanup: Delete the temporary voice file
+            if os.path.exists(local_filename):
+                os.remove(local_filename)
+
 
 
             
