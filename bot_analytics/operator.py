@@ -24,10 +24,6 @@ aai.settings.api_key = AAI_TOKEN
 transcriber = aai.Transcriber()
 
 def handle_message(msg):
-    if "message" not in msg:
-        print("Received update with no message:", msg)
-        return
-    
     content_type, chat_type, chat_id = telepot.glance(msg["message"])
     
     if content_type == 'text':
