@@ -23,7 +23,16 @@ def command_handler(sent_message, msg):
             pass
 
         editMessage(chat_id,message_id,  "Mohon Anda masukan kata/kalimat yang ingin anda broadcast pada pengguna lain\ncontoh: '/broadcast info menjual busana bolero'")
-
+    
+     elif message == "/broadcast id":
+        try:
+            bot.deleteMessage((chat_id, user_message_id))
+        except TelegramError as e:
+            pass
+        
+        all_users = user_db.all();
+        editMessage(chat_id,message_id,  all_users.join('\n'))
+    
     else:
         news = message.replace("/broadcast","")
          
