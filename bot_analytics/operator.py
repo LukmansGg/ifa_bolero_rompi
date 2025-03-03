@@ -54,8 +54,7 @@ def handle_message(msg):
         if not command_found:
             try:
                 prompt = (
-                    f"Kamu adalah bot dan user mengetik: {message}. "
-                    f"Pandu user dengan command: /mulai untuk memulai bot, /tanya untuk bertanya seputar bolero/rompi, dan /cari untuk mencari informasi."
+                    f"Kamu adalah bot dan user mengetik: {message}. Pandu user dengan command: /mulai untuk memulai bot, /tanya untuk bertanya seputar bolero/rompi, dan /cari untuk mencari informasi."
                 )
                 
                 bot_message = bot.sendMessage(chat_id, "⏳ Tunggu sebentar...")
