@@ -24,7 +24,8 @@ aai.settings.api_key = AAI_TOKEN
 transcriber = aai.Transcriber()
 
 def handle_message(msg):
-    content_type, chat_type, chat_id = telepot.glance(msg["message"])
+    content_type, chat_type, chat_id = telepot.glance(msg)
+    print(f"Processing message from {chat_id}: {msg}")
     
     if content_type == 'text':
         message = msg['message']['text']
