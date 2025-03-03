@@ -15,7 +15,7 @@ def home():
 @app.route('/ifaa', methods=['POST'])
 def webhook():
     update = request.get_json()
-    print("Webhook received:", update)  # Debugging output
+    print("📩 Webhook received:", update)  # Debugging output
     if not update:
         return "Invalid request", 400
 
