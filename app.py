@@ -19,19 +19,29 @@ def webhook():
     if not update:
         return "Invalid request", 400
 
-    # Process different types of updates
-    if "message" in update:
-        handle_message(update["message"])
-    elif 'callback_query' in update:
-        handle_callback(update)
-    elif 'voice' in update:
-        handle_voice_message(update)
-    else:
-        print("No 'message' key in update:", update)
-    
+    try:
+        if "message" in update:
+            if "voice" in update["message"]:
+                handle_voice_message(update["message"])
+            else:
+                handle_message(update["message"])
+        elif "callback_query" in update:
+            handle_callback(update)
+        else:
+            print("Unhandled update type:", update)
+    except Exception as e:
+        print("Error processing update:", str(e))
+
     return "OK", 200
 
 if __name__ == '__main__':
+    # Ensure PORT is an integer
+    try:
+        PORT = int(PORT)
+    except ValueError:
+        print("Invalid PORT value in config.py")
+        PORT = 8000  # Default to 8000
+
     # Set webhook on Telegram
     bot.setWebhook(f"{WEBHOOK_URL}/ifaa")
 
