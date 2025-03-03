@@ -14,10 +14,8 @@ def home():
 
 @app.route('/ifaa', methods=['POST'])
 def webhook():
-    """
-    Handles incoming Telegram webhook updates.
-    """
     update = request.get_json()
+    print("Webhook received:", update)  # Debugging output
     if not update:
         return "Invalid request", 400
 
@@ -28,7 +26,12 @@ def webhook():
         handle_callback(update)
     elif 'voice' in update:
         handle_voice_message(update)
-
+    
+    if "message" in update:
+        handle_message(update["message"])
+    else:
+        print("No 'message' key in update:", update)
+    
     return "OK", 200
 
 if __name__ == '__main__':
