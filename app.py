@@ -20,15 +20,12 @@ def webhook():
         return "Invalid request", 400
 
     # Process different types of updates
-    if 'message' in update:
-        handle_message(update)
+    if "message" in update:
+        handle_message(update["message"])
     elif 'callback_query' in update:
         handle_callback(update)
     elif 'voice' in update:
         handle_voice_message(update)
-    
-    if "message" in update:
-        handle_message(update["message"])
     else:
         print("No 'message' key in update:", update)
     
