@@ -16,11 +16,11 @@ def answeringMessage(bot_message, chat_id, message, response):
        response = "[Error Lalu Lintas] > silakan coba ubah lingkungan jaringan, tunggu dan coba lagi beberapa saat"
 
     try:
-        sent_message = bot.editMessageText((bot_chat_id, bot_message_id), response, parse_mode="HTML", reply_markup=regenerate)
+        sent_message = bot.editMessageText((bot_chat_id, bot_message_id), response, , parse_mode="MarkdownV2", reply_markup=regenerate)
         message_id = sent_message.get('message_id')
         db.insert({'chat_id': chat_id, 'message_id': message_id, 'question': message, 'answer': response})
     except telepot.exception.TelegramError as e:
-        sent_message = bot.sendMessage(bot_chat_id, response, parse_mode="HTML", reply_markup=regenerate)
+        sent_message = bot.sendMessage(bot_chat_id, response, , parse_mode="MarkdownV2", reply_markup=regenerate)
         message_id = sent_message.get('message_id')
         db.insert({'chat_id': chat_id, 'message_id': message_id, 'question': message, 'answer': response})
         pass
@@ -29,13 +29,13 @@ def answeringMessage(bot_message, chat_id, message, response):
 def editMessage(chat_id, message_id, message, keyboard=None):
     if keyboard:
         try:
-            bot.editMessageText((chat_id, message_id), message, parse_mode="HTML", reply_markup = keyboard)
+            bot.editMessageText((chat_id, message_id), message, , parse_mode="MarkdownV2", reply_markup = keyboard)
         except:
-            bot.sendMessage(chat_id, message, parse_mode="HTML", reply_markup = keyboard)
+            bot.sendMessage(chat_id, message, , parse_mode="MarkdownV2", reply_markup = keyboard)
             
     else:
         try:
-            bot.editMessageText((chat_id, message_id), message, parse_mode="HTML")
+            bot.editMessageText((chat_id, message_id), message, , parse_mode="MarkdownV2")
         except:
-            bot.sendMessage(chat_id, message, parse_mode="HTML")
+            bot.sendMessage(chat_id, message, , parse_mode="MarkdownV2")
     
