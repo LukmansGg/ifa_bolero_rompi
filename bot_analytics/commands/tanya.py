@@ -25,7 +25,7 @@ def command_handler(sent_message, msg):
 
     else:
         query = message.replace("/tanya","")
-        answer = gpt3(query + " pada busana bolero dan busana rompi")
+        answer = gpt4(query + " pada busana bolero dan busana rompi")
         
         regenerate = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Re-Generate', callback_data = 'regenerate')]])
         
