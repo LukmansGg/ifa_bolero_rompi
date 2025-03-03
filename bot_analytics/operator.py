@@ -28,22 +28,21 @@ def handle_message(msg):
     print(f"Processing message from {chat_id}: {msg}")
     
     if content_type == 'text':
-        message = msg['message']['text']
-        message_id = msg['message']['message_id']
+        message = msg.get('text', '')  # ✅ Use `.get()` to prevent KeyError
+        message_id = msg.get('message_id')
+
         User = Query()
-        
         if not user_db.search(User.user_id == chat_id):
             user_db.insert({'user_id': chat_id})
         
         command_found = False
-        
+
         for command in TELEGRAM_BOT_COMMANDS.keys():
-            if command in message:
+            if message.startswith(command):  # ✅ Use `startswith` for accuracy
                 command_found = True
                 module_name = TELEGRAM_BOT_COMMANDS[command]
                 module = importlib.import_module(module_name, ".")
                 
-                # Inform user that the command is being processed
                 bot_message = bot.sendMessage(chat_id, "⏳ Tunggu sebentar...", reply_to_message_id=message_id)
                 
                 try:
