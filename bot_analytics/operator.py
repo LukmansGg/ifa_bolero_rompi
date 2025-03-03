@@ -67,39 +67,40 @@ def handle_message(msg):
 
 def handle_callback(msg):
     try:
-        query_id, from_id, query_data = telepot.glance(msg, flavor='callback_query')
-        callback_id = msg.get('id', None)
-        
-        if query_data is None:
-            bot.answerCallbackQuery(callback_id, "⚠️ Callback tidak valid.")
-            print(f"⚠️ Invalid callback received: {msg}")
+        # Ensure we access 'callback_query' correctly
+        callback_query = msg.get("callback_query", {})
+        query_id = callback_query.get("id", None)
+        from_id = callback_query.get("from", {}).get("id", None)
+        query_data = callback_query.get("data", None)
+
+        if query_id is None or from_id is None or query_data is None:
+            print(f"⚠️ Invalid callback data received: {msg}")
             return
 
+        # Save user ID if not already in the database
         User = Query()
         if not user_db.search(User.user_id == from_id):
             user_db.insert({'user_id': from_id})
 
+        # Process callback command
         if query_data in TELEGRAM_BOT_CALLBACKS:
             module_name = TELEGRAM_BOT_CALLBACKS[query_data]
             module = importlib.import_module(module_name, ".")
-            
-            bot.answerCallbackQuery(callback_id, "⏳ Tunggu sebentar...")
-            
+
+            bot.answerCallbackQuery(query_id, "⏳ Tunggu sebentar...")
+
             try:
-                module.callback_handler(msg)
+                module.callback_handler(callback_query)
             except Exception as e:
                 bot.sendMessage(from_id, f"⚠️ Callback gagal: {str(e)}")
-        
+
         else:
-            bot.answerCallbackQuery(callback_id, "⚠️ Callback tidak dikenal.")
+            bot.answerCallbackQuery(query_id, "⚠️ Callback tidak dikenal.")
             print(f"⚠️ Unknown callback received: {query_data}")
 
     except Exception as e:
         print(f"⚠️ Error handling callback: {str(e)}")
 
-    if not callback_found:
-        bot.answerCallbackQuery(callback_id, "⚠️ Callback tidak dikenal.")
-        print(f"⚠️ Unknown callback received: {query_data}")
 
 def handle_voice_message(msg):
     try:
