@@ -66,19 +66,21 @@ def handle_message(msg):
                 bot.sendMessage(chat_id, f"⚠️ Gagal menghasilkan jawaban: {str(e)}")
 
 def handle_callback(msg):
-    query_id, from_id, query_data = telepot.glance(msg, flavor='callback_query')
-    callback_id = msg['id']
-    
-    User = Query()
-    if not user_db.search(User.user_id == from_id):
-        user_db.insert({'user_id': from_id})
+    try:
+        query_id, from_id, query_data = telepot.glance(msg, flavor='callback_query')
+        callback_id = msg.get('id', None)
+        
+        if query_data is None:
+            bot.answerCallbackQuery(callback_id, "⚠️ Callback tidak valid.")
+            print(f"⚠️ Invalid callback received: {msg}")
+            return
 
-    callback_found = False
+        User = Query()
+        if not user_db.search(User.user_id == from_id):
+            user_db.insert({'user_id': from_id})
 
-    for callback in TELEGRAM_BOT_CALLBACKS.keys():
-        if callback == query_data:
-            callback_found = True
-            module_name = TELEGRAM_BOT_CALLBACKS[callback]
+        if query_data in TELEGRAM_BOT_CALLBACKS:
+            module_name = TELEGRAM_BOT_CALLBACKS[query_data]
             module = importlib.import_module(module_name, ".")
             
             bot.answerCallbackQuery(callback_id, "⏳ Tunggu sebentar...")
@@ -87,46 +89,65 @@ def handle_callback(msg):
                 module.callback_handler(msg)
             except Exception as e:
                 bot.sendMessage(from_id, f"⚠️ Callback gagal: {str(e)}")
-            break  
+        
+        else:
+            bot.answerCallbackQuery(callback_id, "⚠️ Callback tidak dikenal.")
+            print(f"⚠️ Unknown callback received: {query_data}")
+
+    except Exception as e:
+        print(f"⚠️ Error handling callback: {str(e)}")
 
     if not callback_found:
         bot.answerCallbackQuery(callback_id, "⚠️ Callback tidak dikenal.")
         print(f"⚠️ Unknown callback received: {query_data}")
 
 def handle_voice_message(msg):
-    if "message" not in msg or "voice" not in msg["message"]:
-        return
+    try:
+        message = msg.get("message", {})
+        if "voice" not in message:
+            return
 
-    content_type, chat_type, chat_id = telepot.glance(msg["message"])
+        content_type, chat_type, chat_id = telepot.glance(message)
 
-    if content_type == 'voice':
-        file_id = msg['message']['voice']['file_id']
-        
-        try:
-            file_info = bot.getFile(file_id)
-            file_path = file_info['file_path']
-            
-            file_url = f"https://api.telegram.org/file/bot{TOKEN}/{file_path}"
-            local_filename = f"temp_voice_{uuid.uuid4()}.ogg"
-            
-            response = requests.get(file_url)
-
-            if response.status_code == 200:
-                with open(local_filename, 'wb') as f:
-                    f.write(response.content)
-            else:
-                bot.sendMessage(chat_id, "⚠️ Gagal mengunduh pesan suara.")
+        if content_type == 'voice':
+            file_id = message["voice"].get("file_id", None)
+            if not file_id:
+                bot.sendMessage(chat_id, "⚠️ File ID tidak ditemukan.")
                 return
-            
+
+            # Get file from Telegram
+            try:
+                file_info = bot.getFile(file_id)
+                file_path = file_info['file_path']
+                file_url = f"https://api.telegram.org/file/bot{TOKEN}/{file_path}"
+                local_filename = f"temp_voice_{uuid.uuid4()}.ogg"
+
+                response = requests.get(file_url, timeout=10)
+                if response.status_code == 200:
+                    with open(local_filename, 'wb') as f:
+                        f.write(response.content)
+                else:
+                    bot.sendMessage(chat_id, "⚠️ Gagal mengunduh pesan suara.")
+                    return
+            except requests.RequestException as e:
+                bot.sendMessage(chat_id, f"⚠️ Error saat mengunduh suara: {str(e)}")
+                return
+
             # Transcribe using AssemblyAI
-            upload_url = aai.upload(local_filename)
-            transcript = transcriber.transcribe(upload_url)
-            
-            bot.sendMessage(chat_id, f"🎙 Transkripsi: {transcript.text}")
-        
-        except Exception as e:
-            bot.sendMessage(chat_id, f"⚠️ Gagal memproses pesan suara: {str(e)}")
-        
-        finally:
-            if os.path.exists(local_filename):
-                os.remove(local_filename)
+            try:
+                upload_url = aai.upload(local_filename)
+                transcript = transcriber.transcribe(upload_url)
+
+                if transcript.text:
+                    bot.sendMessage(chat_id, f"🎙 Transkripsi: {transcript.text}")
+                else:
+                    bot.sendMessage(chat_id, "⚠️ Gagal mentranskripsi suara.")
+            except Exception as e:
+                bot.sendMessage(chat_id, f"⚠️ Gagal memproses pesan suara: {str(e)}")
+
+            finally:
+                if os.path.exists(local_filename):
+                    os.remove(local_filename)
+
+    except Exception as e:
+        print(f"⚠️ Error handling voice message: {str(e)}")
