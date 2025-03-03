@@ -38,7 +38,7 @@ def handle_message(msg):
         command_found = False
 
         for command in TELEGRAM_BOT_COMMANDS.keys():
-            if message.startswith(command):  # ✅ Use `startswith` for accuracy
+            if command in message:  # ✅ Use `startswith` for accuracy
                 command_found = True
                 module_name = TELEGRAM_BOT_COMMANDS[command]
                 module = importlib.import_module(module_name, ".")
