@@ -31,7 +31,7 @@ def command_handler(sent_message, message):
             
     else:
         query = message_text.replace("/cari","")
-        result = searching(query + " bolero/rompi")
+        result = searching(query + " dalam bolero/rompi")
         test = Query()
         get_result = search_db.get(test.search_id == result)
         
