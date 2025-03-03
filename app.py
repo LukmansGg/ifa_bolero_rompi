@@ -1,9 +1,7 @@
-import sys
 import os
-import importlib
 from flask import Flask, request
 import telepot
-from telepot.loop import WebhookServer, OrderedWebhook
+
 from bot_analytics.operator import handle_message, handle_callback, handle_voice_message
 from config import TOKEN, WEBHOOK_URL, PORT
 
@@ -25,17 +23,17 @@ def webhook():
 
     # Process different types of updates
     if 'message' in update:
-        handle_message(update['message'])
+        handle_message(update)
     elif 'callback_query' in update:
-        handle_callback(update['callback_query'])
+        handle_callback(update)
     elif 'voice' in update:
-        handle_voice_message(update['voice'])
+        handle_voice_message(update)
 
     return "OK", 200
 
 if __name__ == '__main__':
-    # Set the webhook URL (your public server address)
-    bot.setWebhook("technical-joann-lukman.koyeb.app/ifaa")
+    # Set webhook on Telegram
+    bot.setWebhook(f"{WEBHOOK_URL}/ifaa")
 
     # Run Flask app
     app.run(host='0.0.0.0', port=PORT)
